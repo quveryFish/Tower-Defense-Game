@@ -6,7 +6,7 @@ public class TowerRotateToEnemy : MonoBehaviour
     private float Range = 5f;
     //private float rotationSpeed = 5f;
 
-    private GameObject firstEnemy;
+    [SerializeField]   private GameObject firstEnemy;
     private bool firstEnemyInRange = false;
     private void OnDrawGizmos()
     {
@@ -15,6 +15,11 @@ public class TowerRotateToEnemy : MonoBehaviour
     }
 
     private void Update()
+    {
+        FindFirstEnemy();
+    }
+
+    private void FindFirstEnemy()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, Range);
 
@@ -27,16 +32,31 @@ public class TowerRotateToEnemy : MonoBehaviour
             }
             else if (firstEnemy != null)
             {
-                transform.rotation = Quaternion.LookRotation(firstEnemy.transform.position - transform.position).normalized;
-                transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-                firstEnemyInRange = true;
-            }
-
-            if (firstEnemyInRange && Vector3.Distance(transform.position, firstEnemy.transform.position) > Range)
+                if (gameObject.GetComponent<TowerShoot>().GetAttackCooldown() < 0.1f)
                 {
-                    firstEnemy = null;
-                    firstEnemyInRange = false;
+                    transform.rotation = Quaternion.LookRotation(firstEnemy.transform.position - transform.position).normalized;
+                    transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+                    firstEnemyInRange = true;
+                    //Debug.Log("Enemy in Range");
+
+                    if (firstEnemyInRange && Vector3.Distance(transform.position, firstEnemy.transform.position) > Range)
+                    {
+
+                        firstEnemy = null;
+                    }
+                }
+
+            }
+            if (firstEnemy == null)
+            {
+                firstEnemyInRange = false;
             }
         }
+    }
+
+
+    public bool IsEnemyInRange()
+    {
+        return firstEnemyInRange;
     }
 }

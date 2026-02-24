@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private int health = 10;
+    [SerializeField] private int health = 10;
 
     public void TakeDamage(int damage)
     {
