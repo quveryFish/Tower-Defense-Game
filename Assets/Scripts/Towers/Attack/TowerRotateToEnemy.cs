@@ -1,16 +1,41 @@
+using System.Threading;
 using UnityEngine;
 
 public class TowerRotateToEnemy : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float Range = 5f;
+    //private float rotationSpeed = 5f;
+
+    private GameObject firstEnemy;
+    private bool firstEnemyInRange = false;
+    private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, Range);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Range);
+
+        foreach (var hit in hitColliders)
+        {
+            if (hit.GetComponent<EnemyMovement>() != null && firstEnemy == null)
+            {
+                Debug.Log("Enemy Detected");
+                firstEnemy = hit.gameObject;
+            }
+            else if (firstEnemy != null)
+            {
+                transform.rotation = Quaternion.LookRotation(firstEnemy.transform.position - transform.position).normalized;
+                firstEnemyInRange = true;
+            }
+
+            if (firstEnemyInRange && Vector3.Distance(transform.position, firstEnemy.transform.position) > Range)
+                {
+                    firstEnemy = null;
+                    firstEnemyInRange = false;
+            }
+        }
     }
 }
