@@ -12,5 +12,12 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    public void Heal(int healAmount)
+    {
+        health += healAmount;
+    }
+    public int GetEnemyHealth()
+    {
+        return health;
+    }
 }

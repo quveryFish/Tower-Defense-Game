@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4075777330507006414}
   - component: {fileID: 7539863745186466601}
   - component: {fileID: 3933396285208226983}
+  - component: {fileID: -8980523943193380358}
+  - component: {fileID: -3451698905089330847}
   m_Layer: 0
   m_Name: EnemyTest
   m_TagString: Untagged
@@ -150,3 +152,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
+--- !u!114 &-8980523943193380358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6978866270486532218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b6d976ca9055545a6915323fa57c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3451698905089330847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6978866270486532218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795de697431f1614089bcc6e2aa4eb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 5

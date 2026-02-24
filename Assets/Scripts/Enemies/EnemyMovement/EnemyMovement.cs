@@ -24,10 +24,6 @@ public class EnemyMovement : MonoBehaviour
         {
             currentCheckpointIndex++;
         }
-        else if (other.gameObject.CompareTag("Exit"))
-        {
-            Destroy(gameObject);
-        }
     }
     public List<Transform> SetCheckpoints(List<Transform> checkPoints)
     {

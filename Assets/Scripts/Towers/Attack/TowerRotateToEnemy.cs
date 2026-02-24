@@ -20,14 +20,15 @@ public class TowerRotateToEnemy : MonoBehaviour
 
         foreach (var hit in hitColliders)
         {
-            if (hit.GetComponent<EnemyMovement>() != null && firstEnemy == null)
+            if (hit.GetComponent<EnemyMovement>() != null && firstEnemy == null && firstEnemyInRange == false)
             {
-                Debug.Log("Enemy Detected");
+                //Debug.Log("Enemy Detected");
                 firstEnemy = hit.gameObject;
             }
             else if (firstEnemy != null)
             {
                 transform.rotation = Quaternion.LookRotation(firstEnemy.transform.position - transform.position).normalized;
+                transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
                 firstEnemyInRange = true;
             }
 
