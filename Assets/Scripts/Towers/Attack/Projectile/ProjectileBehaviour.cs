@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProjectileBehaviour : MonoBehaviour
 {
-    private float lifeTime = 5f;
+    private float lifeTime = 2f;
     private int damage;
 
     private void OnTriggerEnter(Collider other)
