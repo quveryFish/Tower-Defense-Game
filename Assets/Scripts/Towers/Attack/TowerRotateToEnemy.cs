@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TowerRotateToEnemy : MonoBehaviour
 {
-    private float Range = 5f;
+    [SerializeField] private float Range = 5f;
     //private float rotationSpeed = 5f;
 
     [SerializeField]   private GameObject firstEnemy;
@@ -57,5 +57,9 @@ public class TowerRotateToEnemy : MonoBehaviour
     public bool IsEnemyInRange()
     {
         return firstEnemyInRange;
+    }
+    public float GetRange()
+    {
+        return Range;
     }
 }

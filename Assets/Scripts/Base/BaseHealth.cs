@@ -7,7 +7,7 @@ public class BaseHealth : MonoBehaviour
     public void DealDamageToBase(int damage)
     {
         health -= damage;
-        healthText.text = health.ToString();
+        healthText.text = "HP: " + health.ToString();
         if (health <= 0)
         {
             healthText.text = "Destroyed";
