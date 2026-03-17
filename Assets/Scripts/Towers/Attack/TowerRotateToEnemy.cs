@@ -31,7 +31,7 @@ public class TowerRotateToEnemy : MonoBehaviour
             }
             else if (firstEnemy != null)
             {
-                if (gameObject.GetComponent<TowerShoot>().GetAttackCooldown() < 0.1f)
+                if (gameObject.GetComponent<TowerShoot>().GetAttackCooldown() <= 0)
                 {
                     transform.rotation = Quaternion.LookRotation(firstEnemy.transform.position - transform.position).normalized;
                     transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);

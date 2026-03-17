@@ -6,12 +6,14 @@ public class RangeOnPlaceble : MonoBehaviour
     private float rangeNum;
     private float areaRangeNum = 5;
 
+
     private GameObject range;
     private GameObject placebleRange;
     [SerializeField] private GameObject rangePrefab;
     [SerializeField] private GameObject placebleRangePrefab;
 
-    
+    private bool canPlace = true;
+    private int overlapCount = 0;
 
     private void Start()
     {
@@ -50,11 +52,28 @@ public class RangeOnPlaceble : MonoBehaviour
             isPlaceble = PlaceTower.Instance.GetIsPlacable();
         }
     }
+
+
     private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<IsLimiterRange>())
+        {
+            overlapCount++;
+            if (overlapCount > 0)
+            {
+                canPlace = false;
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<IsLimiterRange>())
         {
-            placebleRange.SetActive(true);
+            overlapCount--;
+            if (overlapCount <= 0)
+            {
+                canPlace = true;
+            }
         }
     }
 
@@ -66,7 +85,7 @@ public class RangeOnPlaceble : MonoBehaviour
     private void CreateLimitingRange()
     {
         placebleRange = Instantiate(placebleRangePrefab, transform.position + new Vector3(0,0.1f,0), Quaternion.identity, this.gameObject.transform);
-        placebleRange.transform.localScale = new Vector3(areaRangeNum, 0.2f, areaRangeNum);
+        placebleRange.transform.localScale = new Vector3(areaRangeNum / 2.5f, 0.2f, areaRangeNum / 2.5f);
         placebleRange.name = "PlacebleRange";
         placebleRange.SetActive(false);
     }
@@ -74,6 +93,10 @@ public class RangeOnPlaceble : MonoBehaviour
     public GameObject triggerRange()
     {
         return placebleRange;
+    }
+    public bool GetCanPlace()
+    {
+        return canPlace;
     }
 
 }

@@ -11,7 +11,7 @@ public class CreateEnemy : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject newObject;
-            newObject = Instantiate(enemyPrefab, enemyEntry.position, Quaternion.identity);
+            newObject = Instantiate(enemyPrefab, enemyEntry.position, Quaternion.identity,this.gameObject.transform);
             newObject.GetComponent<EnemyMovement>().SetCheckpoints(checkpoints);
         }
     }

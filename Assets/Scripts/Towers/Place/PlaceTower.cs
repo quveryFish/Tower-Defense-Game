@@ -5,6 +5,8 @@ public class PlaceTower : MonoBehaviour
 {
     public static PlaceTower Instance;
 
+    [SerializeField] private LayerMask ground;
+
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject[] towers;
 
@@ -13,20 +15,27 @@ public class PlaceTower : MonoBehaviour
     private Material currentMat;
 
     private bool isPlacable = false;
+    private bool isButtonPressed = false;
 
     private Ray ray;
     private RaycastHit hit;
 
+    private void Start()
+    {
+        CancelPlaceTW();
+    }
     private void Update()
     {
         ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || isButtonPressed)
         {
-            ShowTW();
+            if (Physics.Raycast(ray, out hit, 1000, ground.value, QueryTriggerInteraction.Ignore))
+            {
+                ShowTW();
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && isPlacable)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isPlacable && hit.collider.name == "Platform" && currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
         {
                 PlaceTW();
         }
@@ -35,41 +44,48 @@ public class PlaceTower : MonoBehaviour
             CancelPlaceTW();
         }
 
-        if (isPlacable && Physics.Raycast(ray, out hit) && hit.collider.name == "Platform")
+        if (isPlacable && Physics.Raycast(ray, out hit, 1000, ground.value, QueryTriggerInteraction.Ignore))// && hit.collider.name == "Platform")
         {
             currentTow.transform.position = hit.point;
         }
     }
 
     
-
-
     private void ShowTW()
     {
         CancelPlaceTW();
-        if (Physics.Raycast(ray, out hit) && hit.collider.name == "Platform")
+        EnableAllTriggerRanges(true);
+        currentTow = Instantiate(towers[0], hit.point, Quaternion.identity, this.gameObject.transform);
+        currentTow.transform.rotation = Quaternion.Euler(0, 180, 0);
+        currentMat = currentTow.GetComponentInChildren<SkinnedMeshRenderer>().material;
+
+
+
+        SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
+        if (currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
         {
-            EnableAllTriggerRanges(true);
-            currentTow = Instantiate(towers[0], hit.point, Quaternion.identity, this.gameObject.transform);
-            currentTow.transform.rotation = Quaternion.Euler(0, 180, 0);
-            currentMat = currentTow.GetComponentInChildren<SkinnedMeshRenderer>().material;
-
-            
-
-            SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
-
+            foreach (SkinnedMeshRenderer r in renderers)
+            {
+                r.material.color = Color.green;
+            }
+        }
+        else if (currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace() == false)
+        {
             foreach (SkinnedMeshRenderer r in renderers)
             {
                 r.material.color = Color.red;
             }
+        }
+
 
             isPlacable = true;
-        }
+        isButtonPressed = false;
     }
 
     private void PlaceTW()
     {
         isPlacable = false;
+        isButtonPressed = false;
         placedTowerList.Add(currentTow);
         SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (SkinnedMeshRenderer r in renderers)
@@ -85,6 +101,7 @@ public class PlaceTower : MonoBehaviour
     private void CancelPlaceTW()
     {
         isPlacable = false;
+        isButtonPressed = false;
         if (currentTow == null) return;
         Destroy(currentTow);
         currentTow = null;
@@ -118,6 +135,11 @@ public class PlaceTower : MonoBehaviour
     public bool GetIsPlacable()
     {
         return isPlacable;
+    }
+    public void ButtonClickToTrue()
+    {
+        isButtonPressed = true;
+        //Debug.Log("isButtonPressed: " + isButtonPressed);
     }
 
 }
