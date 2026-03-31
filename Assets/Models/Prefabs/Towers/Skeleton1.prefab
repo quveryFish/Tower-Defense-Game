@@ -2698,8 +2698,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPref: {fileID: 5945905393214602632, guid: 1892448bb1074c345adf0655b5eb54ce, type: 3}
   attackDot: {fileID: 7825430041142795296}
-  attackMaxCooldown: 1
-  bulletSpeed: 10
+  attackMaxCooldown: 0.8
+  bulletSpeed: 7
   damage: 1
 --- !u!114 &5290233254523394198
 MonoBehaviour:

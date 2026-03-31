@@ -1,9 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    private CreateEnemy createEnemy;
+    [SerializeField] private List<WaveSriptableObjScript> waveSriptableObj;
 
+    private CreateEnemy createEnemy;
+    private float timeBetweenWaves = 0;
+    public int currentWave = 0;
+
+    public int enemiesLast;
+
+    private bool isWaveStarted = false;
+    private bool isWaveCompleted = false;
     private void Start()
     {
         createEnemy = this.gameObject.GetComponent<CreateEnemy>();
@@ -11,17 +20,67 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-        if (createEnemy.GetEnemiesLast() <= 0 && createEnemy.GetIsWaveStarted() == true)
+
+        if ((Input.GetKeyDown(KeyCode.Space) && GetIsWaveStarted() == false))
+        {
+            isWaveStarted = true;//Починаєм гру
+            enemiesLast = waveSriptableObj[currentWave].enemiesLastInWave;
+            Debug.Log("Wave Started");
+        }
+
+
+        if (isWaveStarted == true)
+        {
+            isWaveCompleted = false;
+        }
+        else if (isWaveStarted == false && isWaveCompleted == true)
+        {
+            Debug.Log($"Next wave will start in {timeBetweenWaves} seconds.");
+            timeBetweenWaves -= Time.deltaTime;
+            if (timeBetweenWaves <= 0)
+            {
+                isWaveStarted = true;
+                enemiesLast = waveSriptableObj[currentWave].enemiesLastInWave;
+            }
+        }
+
+
+        if (enemiesLast <= 0 && isWaveStarted == true)
         {
             //End of wave
-            if (createEnemy.currentWave <= createEnemy.GetAmountOfWaves())
+            if (currentWave <= waveSriptableObj.Count)
             {
-                createEnemy.timeBetweenWaves = 5f;
-                createEnemy.currentWave++;
-                createEnemy.SetIsWaveStarted(false);
+                currentWave++;
+                isWaveStarted = false;
+                isWaveCompleted = true;
+                timeBetweenWaves = 6.7f;
+                Debug.Log($"Wave {currentWave} completed. Next wave will start in {timeBetweenWaves} seconds.");
 
             }
 
         }
+    }
+
+    public GameObject SelectEnemy()
+    {
+        int rnd = Random.Range(0, waveSriptableObj[currentWave].enemiesInWave.Count);
+        return waveSriptableObj[currentWave].enemiesInWave[rnd];
+    }
+
+    public bool GetIsWaveStarted()
+    {
+        return isWaveStarted;
+    }
+    public bool SetIsWaveStarted(bool isStarted)
+    {
+        return isWaveStarted = isStarted;
+    }
+    public int GetCurrentWave()
+    {
+        return currentWave;
+    }
+    public int GetAmountOfWaves()
+    {
+        return waveSriptableObj.Count;
     }
 }

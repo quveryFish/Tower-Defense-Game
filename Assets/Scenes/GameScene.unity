@@ -404,11 +404,6 @@ MonoBehaviour:
   - {fileID: 8675465635947187058}
   - {fileID: 8675465635947187057}
   - {fileID: 169458354}
-  waveSriptableObj:
-  - {fileID: 11400000, guid: 420119a6089224a4ebf014ea9c797972, type: 2}
-  - {fileID: 11400000, guid: 7913cec290090c549b9f6c2394e1f3ff, type: 2}
-  currentWave: 0
-  timeBetweenWaves: 0
 --- !u!114 &214591121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +416,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81bdc4ec1c301a40a8dabfaa90a3a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  waveSriptableObj:
+  - {fileID: 11400000, guid: 420119a6089224a4ebf014ea9c797972, type: 2}
+  - {fileID: 11400000, guid: 7913cec290090c549b9f6c2394e1f3ff, type: 2}
+  - {fileID: 11400000, guid: bb974591e2a7ba346aefd74bb3e79a52, type: 2}
+  currentWave: 0
+  enemiesLast: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1583,7 @@ SceneRoots:
   - {fileID: 1171097341}
   - {fileID: 214591119}
   - {fileID: 521990737}
-  - {fileID: 8675465635947187055}
   - {fileID: 1712257109}
   - {fileID: 1581743639}
+  - {fileID: 8675465635947187055}
   - {fileID: 1157071116}

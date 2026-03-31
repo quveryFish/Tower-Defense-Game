@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 3933396285208226983}
   - component: {fileID: -8980523943193380358}
   - component: {fileID: -3451698905089330847}
+  - component: {fileID: -1698140089177383877}
   m_Layer: 0
-  m_Name: EnemyTestTank
+  m_Name: EnemyTestSpawnerTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6978866270486532218}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &6746018599965635550
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f7556c0c493554791027755db8ecf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 3
 --- !u!114 &-8980523943193380358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +184,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+--- !u!114 &-1698140089177383877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6978866270486532218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c49fe929427f54a989da2dc319fcb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemiesSelfSpawn
+  childSpawner: {fileID: 5863058466410936390, guid: 78d5c6bdaca1dfd4fb68538807059147, type: 3}
+  numberOfChildren: 2
+  childObj: {fileID: 6978866270486532218, guid: eb972d335992dee40a32ddfef6e592d7, type: 3}
