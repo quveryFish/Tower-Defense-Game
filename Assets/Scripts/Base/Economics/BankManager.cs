@@ -3,9 +3,16 @@ using UnityEngine.UI;
 
 public class BankManager : MonoBehaviour
 {
-    private static BankManager instance;
+    public static BankManager Instance;
     [SerializeField] private Text moneyText;
     private int money = 100;
+    private bool canPlaceTower = true;
+
+
+    private void Start()
+    {
+        UpdateMoneyText();
+    }
 
     public void AddMoney(int amount)
     {
@@ -18,7 +25,29 @@ public class BankManager : MonoBehaviour
         {
             money -= amount;
         }
+        else
+        {
+            Debug.Log("Not enough money!");
+            canPlaceTower = false;
+        }
         UpdateMoneyText();
+    }
+
+    public void CheckIsEnough(int amount)
+    {
+        if (money >= amount)
+        {
+            canPlaceTower = true;
+        }
+        else
+        {
+            canPlaceTower = false;
+        }
+    }
+
+    public bool CanAfford()
+    {
+        return canPlaceTower;
     }
 
 
@@ -30,9 +59,9 @@ public class BankManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {

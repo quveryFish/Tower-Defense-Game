@@ -286,7 +286,19 @@ MonoBehaviour:
       - m_Target: {fileID: 521990736}
         m_TargetAssemblyTypeName: PlaceTower, Assembly-CSharp
         m_MethodName: ButtonClickToTrue
-        m_Mode: 1
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 50
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 521990736}
+        m_TargetAssemblyTypeName: PlaceTower, Assembly-CSharp
+        m_MethodName: SetCurrentIndex
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -348,6 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 214591119}
   - component: {fileID: 214591120}
+  - component: {fileID: 214591121}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -382,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8083518750d8e7a42b86aa7890054d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6978866270486532218, guid: 54028026c608f704b9da1adff4b6db00, type: 3}
+  currentEnemyToSpawn: {fileID: 0}
   enemyEntry: {fileID: 8675465635947187056}
   checkpoints:
   - {fileID: 8675465635947187061}
@@ -391,6 +404,23 @@ MonoBehaviour:
   - {fileID: 8675465635947187058}
   - {fileID: 8675465635947187057}
   - {fileID: 169458354}
+  waveSriptableObj:
+  - {fileID: 11400000, guid: 420119a6089224a4ebf014ea9c797972, type: 2}
+  - {fileID: 11400000, guid: 7913cec290090c549b9f6c2394e1f3ff, type: 2}
+  currentWave: 0
+  timeBetweenWaves: 0
+--- !u!114 &214591121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214591118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81bdc4ec1c301a40a8dabfaa90a3a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveManager
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +793,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+  FirstTowerCost: 50
   cam: {fileID: 330585545}
   towers:
   - {fileID: 8348533932553495986, guid: aee117cdf21e70c408c225145440636e, type: 3}
@@ -904,6 +935,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1157071114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1157071116}
+  - component: {fileID: 1157071115}
+  m_Layer: 0
+  m_Name: EconomicsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1157071115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157071114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4173fdef0e0984897d001960167312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BankManager
+  moneyText: {fileID: 1451241912}
+--- !u!4 &1157071116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157071114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1537.854, y: 275.568, z: -737.2975}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1171097337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,6 +1525,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -4.11
       objectReference: {fileID: 0}
+    - target: {fileID: 2064740751491770593, guid: a8fb134962409214587434084bda9d0e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.14
+      objectReference: {fileID: 0}
     - target: {fileID: 2464670250342667202, guid: a8fb134962409214587434084bda9d0e, type: 3}
       propertyPath: m_Name
       value: PathForEnemies
@@ -1500,8 +1580,9 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1171097341}
-  - {fileID: 8675465635947187055}
   - {fileID: 214591119}
   - {fileID: 521990737}
+  - {fileID: 8675465635947187055}
   - {fileID: 1712257109}
   - {fileID: 1581743639}
+  - {fileID: 1157071116}

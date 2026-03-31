@@ -1,0 +1,10 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Wave 1", menuName = "Scriptable Objects/WaveScrObj")]
+public class WaveSriptableObjScript : ScriptableObject
+{
+    public List<GameObject> enemiesInWave = new List<GameObject>();
+    public int enemiesLastInWave;
+
+}

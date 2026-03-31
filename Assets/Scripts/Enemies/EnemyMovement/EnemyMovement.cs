@@ -31,5 +31,9 @@ public class EnemyMovement : MonoBehaviour
         return checkpointsOnMap;
     }
 
-
+    public int SetCurrentCheckpointIndex(int index)
+    {
+        currentCheckpointIndex = index;
+        return currentCheckpointIndex;
+    }
 }

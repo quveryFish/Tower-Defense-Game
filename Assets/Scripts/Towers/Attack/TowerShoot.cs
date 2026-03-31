@@ -37,3 +37,10 @@ public class TowerShoot : MonoBehaviour
         return attackCooldown;
     }
 }
+
+public enum TowerType
+{
+    Skeleton,
+    Sniper,
+    Splash
+}

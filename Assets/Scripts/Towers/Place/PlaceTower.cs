@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,21 +8,38 @@ public class PlaceTower : MonoBehaviour
 
     [SerializeField] private LayerMask ground;
 
+    [SerializeField] private int FirstTowerCost = 50;
+
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject[] towers;
 
     [SerializeField] private List<GameObject> placedTowerList = new List<GameObject>();
     [SerializeField] private GameObject currentTow;
+    private int currentIndex = 0;
     private Material currentMat;
 
     private bool isPlacable = false;
     private bool isButtonPressed = false;
 
+    private int currentTWcost;
+
     private Ray ray;
     private RaycastHit hit;
 
+
+
+    public event Action OnPlaceTower;
+
+    public event Action OnShowTower;
+
     private void Start()
     {
+        OnPlaceTower += PlaceTW;
+        OnPlaceTower += () => BankManager.Instance.SubtractMoney(currentTWcost);
+
+        OnShowTower += ShowTW;
+
+
         CancelPlaceTW();
     }
     private void Update()
@@ -32,12 +50,13 @@ public class PlaceTower : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, 1000, ground.value, QueryTriggerInteraction.Ignore))
             {
-                ShowTW();
+                OnShowTower?.Invoke();
             }
         }
         if (Input.GetKeyDown(KeyCode.Mouse0) && isPlacable && hit.collider.name == "Platform" && currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
         {
-                PlaceTW();
+            ButtonClickToTrue(FirstTowerCost);
+            OnPlaceTower?.Invoke();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1) && isPlacable)
         {
@@ -53,9 +72,17 @@ public class PlaceTower : MonoBehaviour
     
     private void ShowTW()
     {
+        BankManager.Instance.CheckIsEnough(currentTWcost);
+        if (BankManager.Instance.CanAfford() == false)
+        {
+            Debug.Log("Can't afford tower!");
+            isButtonPressed = false;
+            return;
+        }
+
         CancelPlaceTW();
         EnableAllTriggerRanges(true);
-        currentTow = Instantiate(towers[0], hit.point, Quaternion.identity, this.gameObject.transform);
+        currentTow = Instantiate(towers[currentIndex], hit.point, Quaternion.identity, this.gameObject.transform);
         currentTow.transform.rotation = Quaternion.Euler(0, 180, 0);
         currentMat = currentTow.GetComponentInChildren<SkinnedMeshRenderer>().material;
 
@@ -87,6 +114,7 @@ public class PlaceTower : MonoBehaviour
         isPlacable = false;
         isButtonPressed = false;
         placedTowerList.Add(currentTow);
+
         SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (SkinnedMeshRenderer r in renderers)
         {
@@ -136,10 +164,15 @@ public class PlaceTower : MonoBehaviour
     {
         return isPlacable;
     }
-    public void ButtonClickToTrue()
+    public void ButtonClickToTrue(int twCost)
     {
+        currentTWcost = twCost;
         isButtonPressed = true;
         //Debug.Log("isButtonPressed: " + isButtonPressed);
+    }
+    public void SetCurrentIndex(int index)
+    {
+        currentIndex = index;
     }
 
 }
