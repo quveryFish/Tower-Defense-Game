@@ -7,8 +7,7 @@ public class PlaceTower : MonoBehaviour
     public static PlaceTower Instance;
 
     [SerializeField] private LayerMask ground;
-
-    [SerializeField] private int FirstTowerCost = 50;
+    [SerializeField] private GameObject mapLimiter;
 
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject[] towers;
@@ -46,16 +45,16 @@ public class PlaceTower : MonoBehaviour
     {
         ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) || isButtonPressed)
+        if (isButtonPressed)
         {
             if (Physics.Raycast(ray, out hit, 1000, ground.value, QueryTriggerInteraction.Ignore))
             {
                 OnShowTower?.Invoke();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && isPlacable && hit.collider.name == "Platform" && currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isPlacable && currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
         {
-            ButtonClickToTrue(FirstTowerCost);
+            ButtonClickToTrue(currentTWcost);
             OnPlaceTower?.Invoke();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1) && isPlacable)
@@ -146,6 +145,7 @@ public class PlaceTower : MonoBehaviour
                 tower.GetComponent<RangeOnPlaceble>().triggerRange().SetActive(bl);
             }
         }
+        mapLimiter.SetActive(bl);
     }
 
     private void Awake()
@@ -168,7 +168,6 @@ public class PlaceTower : MonoBehaviour
     {
         currentTWcost = twCost;
         isButtonPressed = true;
-        //Debug.Log("isButtonPressed: " + isButtonPressed);
     }
     public void SetCurrentIndex(int index)
     {

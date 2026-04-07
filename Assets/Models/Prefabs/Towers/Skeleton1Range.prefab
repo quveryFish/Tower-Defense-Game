@@ -2646,7 +2646,7 @@ GameObject:
   - component: {fileID: 9123742225134454174}
   - component: {fileID: -2695595004887859528}
   m_Layer: 0
-  m_Name: Skeleton1
+  m_Name: Skeleton1Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

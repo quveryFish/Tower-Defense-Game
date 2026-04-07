@@ -31,16 +31,14 @@ public class TowerRotateToEnemy : MonoBehaviour
             }
             else if (firstEnemy != null)
             {
-                if (gameObject.GetComponent<TowerShoot>().GetAttackCooldown() <= 0)
+                if (IsCooldownGreaterO())
                 {
                     transform.rotation = Quaternion.LookRotation(firstEnemy.transform.position - transform.position).normalized;
                     transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
                     firstEnemyInRange = true;
-                    //Debug.Log("Enemy in Range");
 
                     if (firstEnemyInRange && Vector3.Distance(transform.position, firstEnemy.transform.position) > Range)
                     {
-
                         firstEnemy = null;
                     }
                 }
@@ -53,6 +51,25 @@ public class TowerRotateToEnemy : MonoBehaviour
         }
     }
 
+    private bool IsCooldownGreaterO()
+    {
+        bool bl = false;
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            if (gameObject.GetComponent<TowerShoot>().GetAttackCooldown() <= 0)
+            {
+                bl = true;
+            }
+        }
+        else if (gameObject.GetComponent<TowerSplashMelee>() != null)
+        {
+            if (gameObject.GetComponent<TowerSplashMelee>().GetAttackCooldown() <= 0)
+            {
+                bl = true;
+            }
+        }
+        return bl;
+    }
 
     public bool IsEnemyInRange()
     {

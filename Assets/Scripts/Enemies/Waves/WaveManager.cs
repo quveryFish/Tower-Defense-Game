@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private List<WaveSriptableObjScript> waveSriptableObj;
 
+    [SerializeField] private Text waveTimeText;
     private CreateEnemy createEnemy;
     private float timeBetweenWaves = 0;
     public int currentWave = 0;
@@ -28,7 +30,14 @@ public class WaveManager : MonoBehaviour
             Debug.Log("Wave Started");
         }
 
-
+        if (timeBetweenWaves > 0)
+        {
+            waveTimeText.text = $"Next wave in {timeBetweenWaves.ToString("F1")} seconds.";
+        }
+        else
+        {
+            waveTimeText.text = "";
+        }
         if (isWaveStarted == true)
         {
             isWaveCompleted = false;

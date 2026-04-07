@@ -5,7 +5,7 @@ public class BankManager : MonoBehaviour
 {
     public static BankManager Instance;
     [SerializeField] private Text moneyText;
-    private int money = 100;
+    [SerializeField] private int money = 100;
     private bool canPlaceTower = true;
 
 
