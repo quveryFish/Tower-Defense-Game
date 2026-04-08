@@ -81,10 +81,12 @@ public class PlaceTower : MonoBehaviour
 
         CancelPlaceTW();
         EnableAllTriggerRanges(true);
+
         currentTow = Instantiate(towers[currentIndex], hit.point, Quaternion.identity, this.gameObject.transform);
         currentTow.transform.rotation = Quaternion.Euler(0, 180, 0);
         currentMat = currentTow.GetComponentInChildren<SkinnedMeshRenderer>().material;
 
+        BoolScriptsEnable(false);
 
 
         SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -120,6 +122,7 @@ public class PlaceTower : MonoBehaviour
             r.material.color = Color.white;
             r.material = currentMat;
         }
+        BoolScriptsEnable(true);
         currentTow = null;
         currentMat = null;
         EnableAllTriggerRanges(false);
@@ -136,6 +139,21 @@ public class PlaceTower : MonoBehaviour
         EnableAllTriggerRanges(false);
     }
 
+    private void BoolScriptsEnable(bool isEnabled)
+    {
+        if (currentTow.GetComponent<TowerRotateToEnemy>() != null)
+        {
+            currentTow.GetComponent<TowerRotateToEnemy>().enabled = isEnabled;
+        }
+        if (currentTow.GetComponent<TowerShoot>() != null)
+        {
+            currentTow.GetComponent<TowerShoot>().enabled = isEnabled;
+        }
+        else if (currentTow.GetComponent<TowerSplashMelee>() != null)
+        {
+            currentTow.GetComponent<TowerSplashMelee>().enabled = isEnabled;
+        }
+    }
     private void EnableAllTriggerRanges(bool bl)
     {
         foreach (GameObject tower in placedTowerList)

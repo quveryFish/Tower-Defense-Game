@@ -27,6 +27,9 @@ public class TowerShoot : MonoBehaviour
     private void Shoot()
     {
         attackCooldown = attackMaxCooldown;
+
+        gameObject.GetComponent<TowerAnimations>().PlayAttackAnimation();
+
         GameObject bullet = Instantiate(bulletPref, attackDot.position, Quaternion.identity, this.gameObject.transform);
         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * 100);
         bullet.GetComponent<ProjectileBehaviour>().SetDamage(damage);

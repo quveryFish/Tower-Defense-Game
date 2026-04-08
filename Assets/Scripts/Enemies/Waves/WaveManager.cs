@@ -44,7 +44,6 @@ public class WaveManager : MonoBehaviour
         }
         else if (isWaveStarted == false && isWaveCompleted == true)
         {
-            Debug.Log($"Next wave will start in {timeBetweenWaves} seconds.");
             timeBetweenWaves -= Time.deltaTime;
             if (timeBetweenWaves <= 0)
             {
