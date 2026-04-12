@@ -28,7 +28,7 @@ public class CreateEnemy : MonoBehaviour
             {
                 SpawnEnemy();
                 waveManager.enemiesLast--;
-                Debug.Log($"Enemies left to spawn: {waveManager.enemiesLast}");
+                //Debug.Log($"Enemies left to spawn: {waveManager.enemiesLast}");
                 spawnTimer = Random.Range(minTimeToSpawn, maxTimeToSpawn);
             }
         }

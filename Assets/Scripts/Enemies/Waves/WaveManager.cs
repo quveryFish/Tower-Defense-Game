@@ -62,7 +62,7 @@ public class WaveManager : MonoBehaviour
                 isWaveStarted = false;
                 isWaveCompleted = true;
                 timeBetweenWaves = 6.7f;
-                Debug.Log($"Wave {currentWave} completed. Next wave will start in {timeBetweenWaves} seconds.");
+                //Debug.Log($"Wave {currentWave} completed. Next wave will start in {timeBetweenWaves} seconds.");
 
             }
 

@@ -7,30 +7,37 @@ public class EnemyTempSpawner : MonoBehaviour
     private int tempnumberOfChildren;
     private List<Transform> tempcheckpointsOnMap;
     private int tempcurrentCheckpointIndex;
-
+    int i;
 
     private float spawnTimer = 0f;
 
+    private void Start()
+    {
+        i = 0;
+    }
     private void Update()
     {
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0f)
         {
             SpawnChildren();
-            spawnTimer = 0.5f;
+            //Debug.Log("children spawned");
         }
         
     }
 
     private void SpawnChildren()
     {
-        for (int i = 0; i <= tempnumberOfChildren - 1; i++)
+
+        if (i <= tempnumberOfChildren)
         {
+            i++;
             GameObject childEn = Instantiate(tempchildrenPrefab, transform.position, Quaternion.identity);
             childEn.GetComponent<EnemyMovement>().SetCheckpoints(tempcheckpointsOnMap);//Список чекпоінтів
 
             childEn.GetComponent<EnemyMovement>().SetCurrentCheckpointIndex(tempcurrentCheckpointIndex); //Індекс поточного чекпоінта
-            if (i == tempnumberOfChildren - 1)
+            spawnTimer = 0.2f;
+            if (i == tempnumberOfChildren)
             {
                 Destroy(gameObject);
             }

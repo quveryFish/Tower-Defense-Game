@@ -17,7 +17,7 @@ public class EnemiesSelfSpawn : MonoBehaviour
         if (enemyHealth.GetEnemyHealth() <= 0)
         {
             GameObject spawner = Instantiate(childSpawner, transform.position, Quaternion.identity);
-            Debug.Log("Spawner created");
+            //Debug.Log("Spawner created");
             spawner.GetComponent<EnemyTempSpawner>().SetNumberOfChildren(numberOfChildren);
             spawner.GetComponent<EnemyTempSpawner>().SetChildrenPrefab(childObj);
             spawner.GetComponent<EnemyTempSpawner>().SetCheckpoints(gameObject.GetComponent<EnemyMovement>().GetCheckpoints());
