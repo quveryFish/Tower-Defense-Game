@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseHealth : MonoBehaviour
 {
-    [SerializeField] private TextMesh healthText;
+    [SerializeField] private Text healthText;
     private int health = 250;
     public void DealDamageToBase(int damage)
     {

@@ -12,9 +12,15 @@ public class WaveManager : MonoBehaviour
     public int currentWave = 0;
 
     public int enemiesLast;
+    [SerializeField] private int enemiesSmall;
+    [SerializeField] private int enemiesMedium;
+    [SerializeField] private int enemiesTanky;
+
 
     private bool isWaveStarted = false;
     private bool isWaveCompleted = false;
+
+    int rnd;
     private void Start()
     {
         createEnemy = this.gameObject.GetComponent<CreateEnemy>();
@@ -27,6 +33,9 @@ public class WaveManager : MonoBehaviour
         {
             isWaveStarted = true;//Починаєм гру
             enemiesLast = waveSriptableObj[currentWave].enemiesLastInWave;
+            enemiesSmall = waveSriptableObj[currentWave].smallEnemiesInWave;
+            enemiesMedium = waveSriptableObj[currentWave].mediumEnemiesInWave;
+            enemiesTanky = waveSriptableObj[currentWave].tankyEnemiesInWave;
             Debug.Log("Wave Started");
         }
 
@@ -38,6 +47,7 @@ public class WaveManager : MonoBehaviour
         {
             waveTimeText.text = "";
         }
+
         if (isWaveStarted == true)
         {
             isWaveCompleted = false;
@@ -45,10 +55,13 @@ public class WaveManager : MonoBehaviour
         else if (isWaveStarted == false && isWaveCompleted == true)
         {
             timeBetweenWaves -= Time.deltaTime;
-            if (timeBetweenWaves <= 0)
+            if (timeBetweenWaves <= 0 && currentWave <= waveSriptableObj.Count)
             {
                 isWaveStarted = true;
                 enemiesLast = waveSriptableObj[currentWave].enemiesLastInWave;
+                enemiesSmall = waveSriptableObj[currentWave].smallEnemiesInWave;
+                enemiesMedium = waveSriptableObj[currentWave].mediumEnemiesInWave;
+                enemiesTanky = waveSriptableObj[currentWave].tankyEnemiesInWave;
             }
         }
 
@@ -71,8 +84,38 @@ public class WaveManager : MonoBehaviour
 
     public GameObject SelectEnemy()
     {
-        int rnd = Random.Range(0, waveSriptableObj[currentWave].enemiesInWave.Count);
-        return waveSriptableObj[currentWave].enemiesInWave[rnd];
+        GameObject enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[0];
+        if (rnd == 0)
+        {
+            rnd = Random.Range(1, waveSriptableObj[currentWave].enemiesInWave.Count + 1);
+            Debug.Log($"Random number generated: {rnd}");
+        }
+
+        if ((waveSriptableObj[currentWave].enemiesInWave[rnd - 1].GetComponent<EnemyHealth>().GetEnemyType() == EnemyType.Small)
+            && enemiesSmall > 0)
+        {
+                enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
+                enemiesSmall--;
+        }
+        else if ((waveSriptableObj[currentWave].enemiesInWave[rnd - 1].GetComponent<EnemyHealth>().GetEnemyType() == EnemyType.Medium)
+            && enemiesMedium > 0)
+        {
+                enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
+                enemiesMedium--;
+        }
+        else if ((waveSriptableObj[currentWave].enemiesInWave[rnd - 1].GetComponent<EnemyHealth>().GetEnemyType() == EnemyType.Tanky)
+            && enemiesTanky > 0)
+        {
+                enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
+                enemiesTanky--;
+        }
+        else
+        {
+            rnd = 0;
+        }
+
+        return enemyToSpawn;
+        //return waveSriptableObj[currentWave].enemiesInWave[rnd];
     }
 
     public bool GetIsWaveStarted()

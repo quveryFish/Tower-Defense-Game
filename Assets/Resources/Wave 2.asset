@@ -15,4 +15,7 @@ MonoBehaviour:
   enemiesInWave:
   - {fileID: 6978866270486532218, guid: eb972d335992dee40a32ddfef6e592d7, type: 3}
   - {fileID: 6978866270486532218, guid: 54028026c608f704b9da1adff4b6db00, type: 3}
+  smallEnemiesInWave: 10
+  mediumEnemiesInWave: 10
+  tankyEnemiesInWave: 0
   enemiesLastInWave: 20

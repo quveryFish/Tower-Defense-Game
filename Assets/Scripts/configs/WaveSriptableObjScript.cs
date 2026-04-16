@@ -5,6 +5,9 @@ using UnityEngine;
 public class WaveSriptableObjScript : ScriptableObject
 {
     public List<GameObject> enemiesInWave = new List<GameObject>();
+    public int smallEnemiesInWave;
+    public int mediumEnemiesInWave;
+    public int tankyEnemiesInWave;
     public int enemiesLastInWave;
 
 }

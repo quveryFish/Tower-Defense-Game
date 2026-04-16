@@ -9,8 +9,8 @@ public class CreateEnemy : MonoBehaviour
 
     private WaveManager waveManager;
 
-    private float minTimeToSpawn = 0.7f;
-    private float maxTimeToSpawn = 3f;
+    private float minTimeToSpawn = 0.3f;
+    private float maxTimeToSpawn = 1f;
     private float spawnTimer;
 
     private void Start()
