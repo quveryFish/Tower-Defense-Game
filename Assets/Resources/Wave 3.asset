@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Wave 3
   m_EditorClassIdentifier: Assembly-CSharp::WaveSriptableObjScript
   enemiesInWave:
-  - {fileID: 6978866270486532218, guid: eb972d335992dee40a32ddfef6e592d7, type: 3}
-  - {fileID: 6978866270486532218, guid: eb972d335992dee40a32ddfef6e592d7, type: 3}
+  - {fileID: 3985318870339692013, guid: c818fd292545048449413bb9945c085e, type: 3}
+  - {fileID: 3985318870339692013, guid: c818fd292545048449413bb9945c085e, type: 3}
   - {fileID: 6978866270486532218, guid: ea3672351002bd94eacec594e238fd8e, type: 3}
   smallEnemiesInWave: 0
   mediumEnemiesInWave: 10

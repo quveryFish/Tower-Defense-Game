@@ -80,7 +80,7 @@ public class RangeOnPlaceble : MonoBehaviour
     private void CreateShootingRange()
     {
         range = Instantiate(rangePrefab, transform.position, Quaternion.identity, this.gameObject.transform);
-        range.transform.localScale = new Vector3(rangeNum, 0.1f, rangeNum);
+        range.transform.localScale = new Vector3(rangeNum * 2, 0.1f, rangeNum * 2);
     }
     private void CreateLimitingRange()
     {

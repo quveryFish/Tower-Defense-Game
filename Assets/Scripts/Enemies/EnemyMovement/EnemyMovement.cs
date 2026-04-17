@@ -15,7 +15,9 @@ public class EnemyMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.linearVelocity = (checkpointsOnMap[currentCheckpointIndex].position - transform.position).normalized * moveSpeed;
+        transform.LookAt(checkpointsOnMap[currentCheckpointIndex].position + new Vector3(0, -0.5f, 0));
+        rb.linearVelocity = ((checkpointsOnMap[currentCheckpointIndex].position + new Vector3(0, -0.5f, 0)) - transform.position).normalized * moveSpeed;
+
     }
 
     private void OnTriggerEnter(Collider other)

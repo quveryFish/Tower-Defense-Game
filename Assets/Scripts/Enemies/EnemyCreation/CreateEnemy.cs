@@ -8,6 +8,7 @@ public class CreateEnemy : MonoBehaviour
     [SerializeField] private List<Transform> checkpoints;
 
     private WaveManager waveManager;
+    private GameObject enemySelected;
 
     private float minTimeToSpawn = 0.3f;
     private float maxTimeToSpawn = 1f;
@@ -26,8 +27,10 @@ public class CreateEnemy : MonoBehaviour
 
             if (spawnTimer <= 0)
             {
-                SpawnEnemy();
-                waveManager.enemiesLast--;
+
+                enemySelected = waveManager.SelectEnemy();
+                if (enemySelected != null)
+                    SpawnEnemy();
                 //Debug.Log($"Enemies left to spawn: {waveManager.enemiesLast}");
                 spawnTimer = Random.Range(minTimeToSpawn, maxTimeToSpawn);
             }
@@ -36,9 +39,8 @@ public class CreateEnemy : MonoBehaviour
     }
     private void SpawnEnemy()
     {
-
         GameObject newObject;
-        newObject = Instantiate(waveManager.SelectEnemy(), enemyEntry.position, Quaternion.identity, this.gameObject.transform);
+        newObject = Instantiate(enemySelected, enemyEntry.position + new Vector3(0, -0.3f, 0), Quaternion.identity, this.gameObject.transform);
         newObject.GetComponent<EnemyMovement>().SetCheckpoints(checkpoints);
     }
 

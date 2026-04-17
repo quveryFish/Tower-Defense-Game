@@ -21,6 +21,7 @@ public class WaveManager : MonoBehaviour
     private bool isWaveCompleted = false;
 
     int rnd;
+    bool spawnEnabled = false;
     private void Start()
     {
         createEnemy = this.gameObject.GetComponent<CreateEnemy>();
@@ -84,35 +85,41 @@ public class WaveManager : MonoBehaviour
 
     public GameObject SelectEnemy()
     {
-        GameObject enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[0];
-        if (rnd == 0)
+        GameObject enemyToSpawn = null;
+        if (spawnEnabled == false)
         {
             rnd = Random.Range(1, waveSriptableObj[currentWave].enemiesInWave.Count + 1);
-            Debug.Log($"Random number generated: {rnd}");
+            Debug.Log($"Random number generated: {rnd-1}");
+            spawnEnabled = true;
         }
 
         if ((waveSriptableObj[currentWave].enemiesInWave[rnd - 1].GetComponent<EnemyHealth>().GetEnemyType() == EnemyType.Small)
-            && enemiesSmall > 0)
+            && enemiesSmall > 0 && spawnEnabled)
         {
-                enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
-                enemiesSmall--;
+            enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
+            enemiesSmall--;
+            enemiesLast--;
         }
         else if ((waveSriptableObj[currentWave].enemiesInWave[rnd - 1].GetComponent<EnemyHealth>().GetEnemyType() == EnemyType.Medium)
-            && enemiesMedium > 0)
+            && enemiesMedium > 0 && spawnEnabled)
         {
-                enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
-                enemiesMedium--;
+            enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
+            enemiesMedium--;
+            enemiesLast--;
         }
         else if ((waveSriptableObj[currentWave].enemiesInWave[rnd - 1].GetComponent<EnemyHealth>().GetEnemyType() == EnemyType.Tanky)
-            && enemiesTanky > 0)
+            && enemiesTanky > 0 && spawnEnabled)
         {
-                enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
-                enemiesTanky--;
+            enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[rnd - 1];
+            enemiesTanky--;
+            enemiesLast--;
         }
-        else
+        else if (enemiesSmall <= 0 || enemiesMedium <= 0 || enemiesTanky <= 0)
         {
-            rnd = 0;
+            spawnEnabled = false;
+            enemyToSpawn = null;
         }
+
 
         return enemyToSpawn;
         //return waveSriptableObj[currentWave].enemiesInWave[rnd];
