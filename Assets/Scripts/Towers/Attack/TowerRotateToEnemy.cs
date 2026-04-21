@@ -5,7 +5,7 @@ public class TowerRotateToEnemy : MonoBehaviour
     [SerializeField] private float Range = 5f;
     //private float rotationSpeed = 5f;
 
-    [SerializeField]   private GameObject firstEnemy;
+    [SerializeField] private GameObject firstEnemy;
     private bool firstEnemyInRange = false;
     private void OnDrawGizmos()
     {
@@ -17,6 +17,7 @@ public class TowerRotateToEnemy : MonoBehaviour
     {
         FindFirstEnemy();
     }
+
 
     private void FindFirstEnemy()
     {
@@ -78,5 +79,9 @@ public class TowerRotateToEnemy : MonoBehaviour
     public float GetRange()
     {
         return Range;
+    }
+    public GameObject GetFirstEnemy()
+    {
+        return firstEnemy;
     }
 }

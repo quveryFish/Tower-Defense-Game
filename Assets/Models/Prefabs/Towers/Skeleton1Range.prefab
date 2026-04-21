@@ -2684,7 +2684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8103f61fca6ac47a3faeae3c93167e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
+  Range: 3
   firstEnemy: {fileID: 0}
 --- !u!114 &6780980244811731253
 MonoBehaviour:

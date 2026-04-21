@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5258764073184191945}
   - component: {fileID: 2496033610289902350}
   - component: {fileID: 1132234758706604305}
-  - component: {fileID: 2024620205389131351}
+  - component: {fileID: 338847202971095962}
   - component: {fileID: 2940040373342137613}
   - component: {fileID: 2680905885273346517}
   m_Layer: 0
@@ -93,8 +93,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2024620205389131351
-SphereCollider:
+--- !u!65 &338847202971095962
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -112,7 +112,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &2940040373342137613
 Light:
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 7448470536712449263}
   - component: {fileID: 2173563633152741624}
   - component: {fileID: 3408796648619096431}
-  - component: {fileID: 503059759238638360}
+  - component: {fileID: 7742169487469592699}
   - component: {fileID: 589883685631795209}
   - component: {fileID: 6915596367523340930}
   m_Layer: 0
@@ -301,8 +301,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &503059759238638360
-SphereCollider:
+--- !u!65 &7742169487469592699
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -320,7 +320,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &589883685631795209
 Light:
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 356864993285954016}
   - component: {fileID: 7271235508078352988}
   - component: {fileID: 2011008891734722730}
-  - component: {fileID: 592718439225838694}
+  - component: {fileID: 491828861551332534}
   - component: {fileID: 7645147122076222588}
   - component: {fileID: 331539725706076950}
   m_Layer: 0
@@ -509,8 +509,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &592718439225838694
-SphereCollider:
+--- !u!65 &491828861551332534
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -528,7 +528,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &7645147122076222588
 Light:
@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 3545204437932122372}
   - component: {fileID: 8773254904596546473}
   - component: {fileID: 5310193814658255888}
-  - component: {fileID: 3780701121787908495}
+  - component: {fileID: 8053496446854782443}
   - component: {fileID: 7181901031664153222}
   - component: {fileID: 6186050371926060436}
   m_Layer: 0
@@ -717,8 +717,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3780701121787908495
-SphereCollider:
+--- !u!65 &8053496446854782443
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -736,7 +736,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &7181901031664153222
 Light:
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 2633031314452845053}
   - component: {fileID: 3344692480617430890}
   - component: {fileID: 7035370278836284622}
-  - component: {fileID: 2743019214579873462}
+  - component: {fileID: 5553633677979916121}
   - component: {fileID: 4464040557918660752}
   - component: {fileID: 5393166063253585694}
   m_Layer: 0
@@ -925,8 +925,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2743019214579873462
-SphereCollider:
+--- !u!65 &5553633677979916121
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -944,7 +944,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &4464040557918660752
 Light:
@@ -1127,7 +1127,7 @@ GameObject:
   - component: {fileID: 1037513454389111012}
   - component: {fileID: 1015802140507937644}
   - component: {fileID: 1345744937960655709}
-  - component: {fileID: 5902406360783105018}
+  - component: {fileID: 6180658302105726563}
   - component: {fileID: 8840889289973234686}
   - component: {fileID: 6309833498479876132}
   m_Layer: 0
@@ -1209,8 +1209,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5902406360783105018
-SphereCollider:
+--- !u!65 &6180658302105726563
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1228,7 +1228,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &8840889289973234686
 Light:
@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 2064740751491770593}
   - component: {fileID: 5244172467784691932}
   - component: {fileID: 4379253807021894907}
-  - component: {fileID: 7799728648027031786}
+  - component: {fileID: 6192959882575518859}
   - component: {fileID: 8498113906944199374}
   - component: {fileID: 6506173292679023130}
   m_Layer: 0
@@ -1459,8 +1459,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7799728648027031786
-SphereCollider:
+--- !u!65 &6192959882575518859
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1478,7 +1478,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &8498113906944199374
 Light:
@@ -1689,7 +1689,7 @@ SphereCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1
@@ -1820,7 +1820,7 @@ GameObject:
   - component: {fileID: 8095566455065753814}
   - component: {fileID: 3480730550666895938}
   - component: {fileID: 5111436314713718204}
-  - component: {fileID: 7370986771321119827}
+  - component: {fileID: 8290828609359846195}
   - component: {fileID: 7611435738377697263}
   - component: {fileID: 2758777763591281956}
   m_Layer: 0
@@ -1902,8 +1902,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7370986771321119827
-SphereCollider:
+--- !u!65 &8290828609359846195
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1921,7 +1921,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &7611435738377697263
 Light:
@@ -2236,7 +2236,7 @@ GameObject:
   - component: {fileID: 648674859943072586}
   - component: {fileID: 6136501850362404921}
   - component: {fileID: 1702298443031953040}
-  - component: {fileID: 3671611046416118148}
+  - component: {fileID: 9023346514785810214}
   - component: {fileID: 7739566892145646070}
   - component: {fileID: 5699443507505733748}
   m_Layer: 0
@@ -2318,8 +2318,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3671611046416118148
-SphereCollider:
+--- !u!65 &9023346514785810214
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2337,7 +2337,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &7739566892145646070
 Light:
@@ -2444,7 +2444,7 @@ GameObject:
   - component: {fileID: 7998962127432051221}
   - component: {fileID: 7313529658181958437}
   - component: {fileID: 5613850923470495553}
-  - component: {fileID: 8185950371899288187}
+  - component: {fileID: 6810664007416742378}
   - component: {fileID: 924153465802316130}
   - component: {fileID: 7250054709929667522}
   m_Layer: 0
@@ -2526,8 +2526,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8185950371899288187
-SphereCollider:
+--- !u!65 &6810664007416742378
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2545,7 +2545,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &924153465802316130
 Light:
@@ -2652,7 +2652,7 @@ GameObject:
   - component: {fileID: 8584731461179330641}
   - component: {fileID: 3062001880628789901}
   - component: {fileID: 6018964058365415826}
-  - component: {fileID: 1099560771248416445}
+  - component: {fileID: 5846008876410613874}
   - component: {fileID: 8847474220844699200}
   - component: {fileID: 147086561698713779}
   m_Layer: 0
@@ -2734,8 +2734,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1099560771248416445
-SphereCollider:
+--- !u!65 &5846008876410613874
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2753,7 +2753,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.2
+  m_Size: {x: 0.6, y: 5, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &8847474220844699200
 Light:

@@ -86,7 +86,7 @@ public class WaveManager : MonoBehaviour
     public GameObject SelectEnemy()
     {
         GameObject enemyToSpawn = null;
-        if (spawnEnabled == false)
+        if (spawnEnabled == false && (enemiesSmall > 0 || enemiesMedium > 0 || enemiesTanky > 0))
         {
             rnd = Random.Range(1, waveSriptableObj[currentWave].enemiesInWave.Count + 1);
             Debug.Log($"Random number generated: {rnd-1}");

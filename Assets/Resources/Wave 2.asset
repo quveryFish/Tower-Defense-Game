@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveSriptableObjScript
   enemiesInWave:
   - {fileID: 3985318870339692013, guid: c818fd292545048449413bb9945c085e, type: 3}
-  - {fileID: 6978866270486532218, guid: 54028026c608f704b9da1adff4b6db00, type: 3}
+  - {fileID: 3985318870339692013, guid: 3a22f3332e02844409156cd4c987fce7, type: 3}
   smallEnemiesInWave: 10
   mediumEnemiesInWave: 10
   tankyEnemiesInWave: 0

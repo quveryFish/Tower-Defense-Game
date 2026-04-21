@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 1952647654410567225}
   - component: {fileID: 2039425707054233712}
   m_Layer: 0
-  m_Name: EnemyBarbarian1
+  m_Name: EnemyBarbarian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
