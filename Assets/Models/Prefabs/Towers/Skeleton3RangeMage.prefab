@@ -2371,10 +2371,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPref: {fileID: 5945905393214602632, guid: f747a98a7f61e804c9ed902c749012db, type: 3}
-  attackDot: {fileID: 7825430041142795296}
-  attackMaxCooldown: 1.2
+  attackPoint: {fileID: 7825430041142795296}
+  attackMaxCooldown: 0.8
   bulletSpeed: 11
   damage: 1
+  penetration: 1
 --- !u!114 &5290233254523394198
 MonoBehaviour:
   m_ObjectHideFlags: 0

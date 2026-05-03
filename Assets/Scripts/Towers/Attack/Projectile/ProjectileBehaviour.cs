@@ -4,6 +4,7 @@ public class ProjectileBehaviour : MonoBehaviour
 {
     private float lifeTime = 2f;
     private int damage;
+    private int penetration;
 
     bool isHit = false;
 
@@ -14,8 +15,19 @@ public class ProjectileBehaviour : MonoBehaviour
 
             if (isHit) return;
             other.GetComponent<EnemyHealth>().TakeDamage(damage);
-            Destroy(gameObject);
             isHit = true;
+            if (isHit = true && penetration > 0)
+            {
+                penetration--;
+                isHit = false;
+                if (penetration <= 0)
+                {
+                    penetration = 0;
+                    Destroy(gameObject);
+                }
+            }
+
+
         }
     }
     private void Update()
@@ -30,5 +42,13 @@ public class ProjectileBehaviour : MonoBehaviour
     public void SetDamage(int damage)
     {
         this.damage = damage;
+    }
+    public void SetPenetration(int penetration)
+    {
+        this.penetration = penetration;
+    }
+    public void SetRotation(Transform rotation)
+    {
+        transform.rotation = rotation.rotation;
     }
 }

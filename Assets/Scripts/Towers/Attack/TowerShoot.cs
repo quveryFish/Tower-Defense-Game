@@ -3,12 +3,14 @@ using UnityEngine;
 public class TowerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPref;
-    [SerializeField] private Transform attackDot;
+    [SerializeField] private Transform attackPoint;
     [Header("Stats")]
     private float attackCooldown = 1f;
     [SerializeField] private float attackMaxCooldown = 1f;
     [SerializeField] private float bulletSpeed = 50f;
     [SerializeField] private int damage = 1;
+    [Header("Upgrades")]
+    [SerializeField] private int penetration = 1;
 
     private void Start()
     {
@@ -30,11 +32,13 @@ public class TowerShoot : MonoBehaviour
 
         gameObject.GetComponent<TowerAnimations>().PlayAttackAnimation();//Animation
 
-        GameObject bullet = Instantiate(bulletPref, attackDot.position, Quaternion.identity, this.gameObject.transform);
+        GameObject bullet = Instantiate(bulletPref, attackPoint.position, Quaternion.identity, this.gameObject.transform);
         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * 100);
         if (bullet.GetComponent<ProjectileBehaviour>() != null)
         {
             bullet.GetComponent<ProjectileBehaviour>().SetDamage(damage);
+            bullet.GetComponent<ProjectileBehaviour>().SetPenetration(penetration);
+            bullet.GetComponent<ProjectileBehaviour>().SetRotation(attackPoint);
         }
         else if (bullet.GetComponent<SlownessProjectileBehaviour>() != null)
         {
