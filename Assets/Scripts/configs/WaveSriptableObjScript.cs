@@ -8,6 +8,5 @@ public class WaveSriptableObjScript : ScriptableObject
     public int smallEnemiesInWave;
     public int mediumEnemiesInWave;
     public int tankyEnemiesInWave;
-    public int enemiesLastInWave;
 
 }

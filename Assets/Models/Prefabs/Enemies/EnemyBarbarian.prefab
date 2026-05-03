@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f7556c0c493554791027755db8ecf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 1
 --- !u!114 &1952647654410567225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,8 +1076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b6d976ca9055545a6915323fa57c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  moneyValue: 1
+  health: 4
+  moneyValue: 10
   enemyType: 0
 --- !u!114 &2039425707054233712
 MonoBehaviour:

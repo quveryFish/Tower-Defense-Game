@@ -7966,6 +7966,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathForEnemies
       objectReference: {fileID: 0}
+    - target: {fileID: 3408796648619096431, guid: a8fb134962409214587434084bda9d0e, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5553633677979916121, guid: a8fb134962409214587434084bda9d0e, type: 3}
       propertyPath: m_ProvidesContacts
       value: 1

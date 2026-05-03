@@ -10,18 +10,17 @@ public class CreateEnemy : MonoBehaviour
     private WaveManager waveManager;
     private GameObject enemySelected;
 
-    private float minTimeToSpawn = 0.3f;
-    private float maxTimeToSpawn = 1f;
+    private float timeToSpawn = 0.7f;
     private float spawnTimer;
 
     private void Start()
     {
         waveManager = this.gameObject.GetComponent<WaveManager>();
-        spawnTimer = maxTimeToSpawn;
+        spawnTimer = timeToSpawn;
     }
     private void Update()
     {
-        if (waveManager.GetIsWaveStarted() && waveManager.enemiesLast > 0)//Починаєм автоматично спавнити ворогів
+        if (waveManager.GetIsWaveStarted())//Починаєм автоматично спавнити ворогів
         {
             spawnTimer -= Time.deltaTime;
 
@@ -32,7 +31,7 @@ public class CreateEnemy : MonoBehaviour
                 if (enemySelected != null)
                     SpawnEnemy();
                 //Debug.Log($"Enemies left to spawn: {waveManager.enemiesLast}");
-                spawnTimer = Random.Range(minTimeToSpawn, maxTimeToSpawn);
+                spawnTimer = timeToSpawn;
             }
         }
 
