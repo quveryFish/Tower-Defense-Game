@@ -2644,6 +2644,7 @@ GameObject:
   - component: {fileID: 7498177988078243172}
   - component: {fileID: 58132047004493975}
   - component: {fileID: 6780980244811731253}
+  - component: {fileID: 359773294658441879}
   - component: {fileID: 5290233254523394198}
   - component: {fileID: 6134264814406116764}
   - component: {fileID: 9123742225134454174}
@@ -2706,6 +2707,22 @@ MonoBehaviour:
   bulletSpeed: 10
   damage: 1
   penetration: 3
+--- !u!114 &359773294658441879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8348533932553495986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7593d39d102fa04195c34dcd003f25d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TWinfo
+  id: 4
+  level: 0
+  towerImage: {fileID: 21300000, guid: 6e09e6b9f48fa2f4094e12236e63b084, type: 3}
+  price: 0
 --- !u!114 &5290233254523394198
 MonoBehaviour:
   m_ObjectHideFlags: 0

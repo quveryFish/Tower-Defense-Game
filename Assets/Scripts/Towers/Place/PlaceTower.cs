@@ -87,6 +87,7 @@ public class PlaceTower : MonoBehaviour
         currentMat = currentTow.GetComponentInChildren<SkinnedMeshRenderer>().material;
 
         BoolScriptsEnable(false);
+        currentTow.GetComponent<TWinfo>().price = currentTWcost;
 
 
         SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();

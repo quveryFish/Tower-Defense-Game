@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 2779171721855872905}
   - component: {fileID: 6529466756473025500}
   - component: {fileID: 4982445167440860267}
+  - component: {fileID: -981639708340305529}
   - component: {fileID: 6032769500786655885}
   - component: {fileID: 8627691445171955236}
   - component: {fileID: 5487623933793558798}
@@ -295,6 +296,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerSplashMelee
   attackMaxCooldown: 1
   damage: 3
+--- !u!114 &-981639708340305529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092657707598868445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7593d39d102fa04195c34dcd003f25d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TWinfo
+  id: 2
+  level: 0
+  towerImage: {fileID: 21300000, guid: 3da9b982c14d57b4796028ccd6119339, type: 3}
+  price: 0
 --- !u!114 &6032769500786655885
 MonoBehaviour:
   m_ObjectHideFlags: 0
