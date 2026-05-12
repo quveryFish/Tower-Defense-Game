@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0)
         {
             BankManager.Instance.AddMoney(moneyValue);
+            CreateEnemy.Instance.RemoveEnemy(gameObject);
             Destroy(gameObject);
         }
     }

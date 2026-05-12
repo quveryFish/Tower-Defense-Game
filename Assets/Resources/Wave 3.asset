@@ -19,3 +19,6 @@ MonoBehaviour:
   smallEnemiesInWave: 30
   mediumEnemiesInWave: 0
   tankyEnemiesInWave: 0
+  timeToSpawnSmall: 0.67
+  timeToSpawnMedium: 0
+  timeToSpawnTanky: 0
