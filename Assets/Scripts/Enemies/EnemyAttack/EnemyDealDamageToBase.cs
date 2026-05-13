@@ -10,7 +10,7 @@ public class EnemyDealDamageToBase : MonoBehaviour
         {
             //Debug.Log("Found base");
             other.GetComponent<BaseHealth>().DealDamageToBase(damageAmount);
-            Destroy(gameObject);
+            gameObject.GetComponent<EnemyHealth>().TakeDamage(GetComponent<EnemyHealth>().GetEnemyHealth());
         }
     }
 }

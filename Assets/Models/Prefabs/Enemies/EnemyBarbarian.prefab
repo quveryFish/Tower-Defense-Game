@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
-  moneyValue: 10
+  moneyValue: 4
   enemyType: 0
 --- !u!114 &2039425707054233712
 MonoBehaviour:
