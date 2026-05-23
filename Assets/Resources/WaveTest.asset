@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: WaveTest
   m_EditorClassIdentifier: Assembly-CSharp::WaveSriptableObjScript
   enemiesInWave:
-  - {fileID: 6978866270486532218, guid: 4f6282cf3e8994842a8b12114daa6383, type: 3}
+  - {fileID: 3985318870339692013, guid: c818fd292545048449413bb9945c085e, type: 3}
+  - {fileID: 3985318870339692013, guid: 3a22f3332e02844409156cd4c987fce7, type: 3}
   - {fileID: 6978866270486532218, guid: 4f6282cf3e8994842a8b12114daa6383, type: 3}
   smallEnemiesInWave: 0
-  mediumEnemiesInWave: 0
-  tankyEnemiesInWave: 1
+  mediumEnemiesInWave: 50
+  tankyEnemiesInWave: 10
+  timeToSpawnSmall: 0.2
+  timeToSpawnMedium: 0.2
+  timeToSpawnTanky: 0.2

@@ -6,6 +6,7 @@ public class RangeOnPlaceble : MonoBehaviour
     private float rangeNum;
     private float areaRangeNum = 5;
 
+    private bool isUpgradable;
 
     private GameObject range;
     private GameObject placebleRange;
@@ -17,6 +18,7 @@ public class RangeOnPlaceble : MonoBehaviour
 
     private void Start()
     {
+        isUpgradable = false;
         isPlaceble = PlaceTower.Instance.GetIsPlacable();
         rangeNum = this.gameObject.GetComponent<TowerRotateToEnemy>().GetRange();
         
@@ -43,9 +45,10 @@ public class RangeOnPlaceble : MonoBehaviour
         }
         else if (range != null 
             && range.activeSelf == true
-            && !isPlaceble)
+            && !isPlaceble && isUpgradable == false)
         {
             placebleRange.SetActive(false);
+            //Debug.Log("Range deactivated");
             range.SetActive(false);
 
 
@@ -94,9 +97,22 @@ public class RangeOnPlaceble : MonoBehaviour
     {
         return placebleRange;
     }
+    public void StretchRange(float newRange)
+    {
+        rangeNum = newRange;
+        range.transform.localScale = new Vector3(rangeNum * 2, 0.1f, rangeNum * 2);
+    }
+    public void ShowShootRange(bool isEnabled)
+    {
+        range.SetActive(isEnabled);
+    }
     public bool GetCanPlace()
     {
         return canPlace;
+    }
+    public void SetIsUpgradable(bool value)
+    {
+        isUpgradable = value;
     }
 
 }

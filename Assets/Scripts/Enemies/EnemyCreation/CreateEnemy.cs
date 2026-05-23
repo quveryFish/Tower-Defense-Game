@@ -27,9 +27,8 @@ public class CreateEnemy : MonoBehaviour
         {
             spawnTimer -= Time.deltaTime;
 
-            if (spawnTimer <= 0)
+            if (spawnTimer <= 0 && !waveManager.isNoEnemiesLeftToSpawn())
             {
-
                 enemySelected = waveManager.SelectEnemy();
                 if (enemySelected != null)
                     SpawnEnemy();

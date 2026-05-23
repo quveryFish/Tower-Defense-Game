@@ -16,6 +16,7 @@ public class TWinfoPanel : MonoBehaviour
     private int TWlevel;
     private Sprite TWtowerImage;
     private int TWsellprice;
+    private int currentUpgPrice;
 
     private bool isPanelRight = false;
 
@@ -34,10 +35,15 @@ public class TWinfoPanel : MonoBehaviour
                 {
                     currentTW = hit.collider.gameObject;
 
-                    TWid = hit.collider.gameObject.GetComponent<TWinfo>().id;
-                    TWlevel = hit.collider.gameObject.GetComponent<TWinfo>().level;
-                    TWtowerImage = hit.collider.gameObject.GetComponent<TWinfo>().towerImage;
-                    TWsellprice = hit.collider.gameObject.GetComponent<TWinfo>().price;
+                    TWlevel = currentTW.GetComponent<TWinfo>().level;
+                    TWtowerImage = currentTW.GetComponent<TWinfo>().towerImage;
+                    TWsellprice = currentTW.GetComponent<TWinfo>().price;
+
+                    if (currentTW.GetComponent<TWinfo>().level < currentTW.GetComponent<TWinfo>().towerUpgradesList.Count)
+                    {
+                        currentUpgPrice = currentTW.GetComponent<TWinfo>().towerUpgradesList[currentTW.GetComponent<TWinfo>().level].upgCost;
+                    }
+
                     if (currentTW.transform.position.x <= 0)
                     {
                         isPanelRight = true;
@@ -59,28 +65,70 @@ public class TWinfoPanel : MonoBehaviour
     }
     private void SetPanelInfo( bool WhatPanel)
     {
+        //right panel
         if (WhatPanel)
         {
             infoPanelRight.SetActive(true);
             infoPanelLeft.SetActive(false);
             TWinfoSlotsRight[0].GetComponent<Image>().sprite = TWtowerImage;
-            //TWinfoSlotsRight[1].GetComponentInChildren<Text>().text = "Upgrade ($"+upgPrice+")";
-            TWinfoSlotsRight[2].GetComponentInChildren<Text>().text = $"Sell (${(int)(TWsellprice * 0.7f)})";
+            UpdateTextRight();
 
         }
+        //left panel
         else
         {
             infoPanelRight.SetActive(false);
             infoPanelLeft.SetActive(true);
             TWinfoSlotsLeft[0].GetComponent<Image>().sprite = TWtowerImage;
-            //TWinfoSlotsLeft[1].GetComponentInChildren<Text>().text = "Upgrade ($"+upgPrice+")";
-            TWinfoSlotsLeft[2].GetComponentInChildren<Text>().text = $"Sell (${(int)(TWsellprice * 0.7f)})";
-            Debug.Log((int)(TWsellprice * 0.7f));
-            Debug.Log((TWsellprice * 0.7f));
+            UpdateTextLeft();
+
         }
+        currentTW.GetComponent<RangeOnPlaceble>().SetIsUpgradable(true);
+        currentTW.GetComponent<RangeOnPlaceble>().ShowShootRange(true);
+    }
+    private void UpdateTextRight()
+    {
+        TWsellprice = currentTW.GetComponent<TWinfo>().price;
+
+        if (currentTW.GetComponent<TWinfo>().level < currentTW.GetComponent<TWinfo>().towerUpgradesList.Count)
+        {
+            currentUpgPrice = currentTW.GetComponent<TWinfo>().towerUpgradesList[currentTW.GetComponent<TWinfo>().level].upgCost;
+        }
+
+        if (currentTW.GetComponent<TWinfo>().level >= currentTW.GetComponent<TWinfo>().towerUpgradesList.Count)
+        {
+            TWinfoSlotsRight[1].GetComponentInChildren<Text>().text = "Upgrade (Max)";
+        }
+        else
+        {
+            TWinfoSlotsRight[1].GetComponentInChildren<Text>().text =
+                "Upgrade ($" + currentUpgPrice + ")";
+        }
+        TWinfoSlotsRight[2].GetComponentInChildren<Text>().text = $"Sell (${(int)(TWsellprice * 0.7f)})";
+    }
+    private void UpdateTextLeft()
+    {
+        TWsellprice = currentTW.GetComponent<TWinfo>().price;
+
+        if (currentTW.GetComponent<TWinfo>().level < currentTW.GetComponent<TWinfo>().towerUpgradesList.Count)
+        {
+            currentUpgPrice = currentTW.GetComponent<TWinfo>().towerUpgradesList[currentTW.GetComponent<TWinfo>().level].upgCost;
+        }
+
+        if (currentTW.GetComponent<TWinfo>().level >= currentTW.GetComponent<TWinfo>().towerUpgradesList.Count)
+        {
+            TWinfoSlotsLeft[1].GetComponentInChildren<Text>().text = "Upgrade (Max)";
+        }
+        else
+        {
+            TWinfoSlotsLeft[1].GetComponentInChildren<Text>().text =
+                "Upgrade ($" + currentUpgPrice + ")";
+        }
+        TWinfoSlotsLeft[2].GetComponentInChildren<Text>().text = $"Sell (${(int)(TWsellprice * 0.7f)})";
     }
     public void HidePanel()
     {
+        currentTW.GetComponent<RangeOnPlaceble>().SetIsUpgradable(false);
         currentTW = null;
         infoPanelRight.SetActive(false);
         infoPanelLeft.SetActive(false);
@@ -91,18 +139,32 @@ public class TWinfoPanel : MonoBehaviour
         {
             //Sell TW
             BankManager.Instance.AddMoney((int)(TWsellprice * (70 / 100f)));
+            PlaceTower.Instance.RemoveFromCurrentTWList(currentTW);
             Destroy(currentTW);
             HidePanel();
         }
     }
     public void UpgradeTW()
     {
-        if (currentTW != null)
+        if (currentTW != null && BankManager.Instance.isEnoughMoney(currentUpgPrice)
+            )
         {
             //Upgrade TW
+            if (currentTW.GetComponent<TWinfo>().level >= currentTW.GetComponent<TWinfo>().towerUpgradesList.Count)
+            {
+                Debug.Log("Max level reached");
+
+                return;
+            }
             currentTW.GetComponent<TWinfo>().level += 1;
-            Debug.Log("new level" + currentTW.name);
-            HidePanel();
+            BankManager.Instance.SubtractMoney(currentUpgPrice);
+            currentTW.GetComponent<TWinfo>().Upgrade();
+            UpdateTextRight();
+            UpdateTextLeft();
+            //HidePanel();
         }
     }
+
+
+
 }

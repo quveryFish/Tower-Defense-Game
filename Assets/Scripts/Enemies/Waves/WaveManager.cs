@@ -15,6 +15,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private int enemiesSmall;
     [SerializeField] private int enemiesMedium;
     [SerializeField] private int enemiesTanky;
+    private bool noEnemiesLeftToSpawn = false;
 
 
     private bool isWaveStarted = false;
@@ -36,6 +37,7 @@ public class WaveManager : MonoBehaviour
             enemiesSmall = waveSriptableObj[currentWave].smallEnemiesInWave;
             enemiesMedium = waveSriptableObj[currentWave].mediumEnemiesInWave;
             enemiesTanky = waveSriptableObj[currentWave].tankyEnemiesInWave;
+            noEnemiesLeftToSpawn = false;
             Debug.Log("Wave Started");
         }
 
@@ -93,7 +95,7 @@ public class WaveManager : MonoBehaviour
     public GameObject SelectEnemy()
     {
         GameObject enemyToSpawn = null;
-        if (spawnEnabled == false && (enemiesSmall > 0 || enemiesMedium > 0 || enemiesTanky > 0))
+        if (spawnEnabled == false && (enemiesSmall > 0 || enemiesMedium > 0 || enemiesTanky > 0) && !noEnemiesLeftToSpawn)
         {
             if (enemiesSmall > 0)
             {
@@ -134,9 +136,13 @@ public class WaveManager : MonoBehaviour
             enemyToSpawn = null;
             spawnEnabled = false;
         }
+        else if (enemiesSmall <= 0 && enemiesMedium <= 0 && enemiesTanky <= 0)
+        {
+            noEnemiesLeftToSpawn = true;
+        }
 
 
-        return enemyToSpawn;
+            return enemyToSpawn;
         //return waveSriptableObj[currentWave].enemiesInWave[rnd];
     }
 
@@ -155,5 +161,9 @@ public class WaveManager : MonoBehaviour
     public int GetAmountOfWaves()
     {
         return waveSriptableObj.Count;
+    }
+    public bool isNoEnemiesLeftToSpawn()
+    {
+        return noEnemiesLeftToSpawn;
     }
 }

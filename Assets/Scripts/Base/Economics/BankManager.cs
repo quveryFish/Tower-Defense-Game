@@ -56,6 +56,11 @@ public class BankManager : MonoBehaviour
         moneyText.text = $"${money}";
     }
 
+    public bool isEnoughMoney(int amount)
+    {
+        return money >= amount;
+    }
+
 
     private void Awake()
     {

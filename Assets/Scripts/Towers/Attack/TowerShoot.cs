@@ -51,4 +51,20 @@ public class TowerShoot : MonoBehaviour
     {
         return attackCooldown;
     }
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
+    public void SetAttackCooldown(float newCooldown)
+    {
+        attackMaxCooldown = newCooldown;
+    }
+    public void SetProjSpeed(float newSpeed)
+    {
+        bulletSpeed = newSpeed;
+    }
+    public void SetPenetration(int newPen)
+    {
+        penetration = newPen;
+    }
 }

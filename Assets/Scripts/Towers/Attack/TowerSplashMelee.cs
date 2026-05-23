@@ -45,6 +45,12 @@ public class TowerSplashMelee : MonoBehaviour
     {
         return attackCooldown;
     }
-
-
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
+    public void SetAttackCooldown(float newCooldown)
+    {
+        attackMaxCooldown = newCooldown;
+    }
 }

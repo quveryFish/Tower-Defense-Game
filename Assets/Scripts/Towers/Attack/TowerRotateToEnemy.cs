@@ -80,6 +80,11 @@ public class TowerRotateToEnemy : MonoBehaviour
     {
         return Range;
     }
+    public void SetRange(float range)
+    {
+        Range = range;
+        this.gameObject.GetComponent<RangeOnPlaceble>().StretchRange(range);
+    }
     public GameObject GetFirstEnemy()
     {
         return firstEnemy;

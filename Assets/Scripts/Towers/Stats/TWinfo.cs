@@ -1,10 +1,67 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TWinfo : MonoBehaviour
 {
-    public int id;
+    public List<TowerUpgrades> towerUpgradesList;
     public int level;
     public Sprite towerImage;
     public int price;
+
+
+    public void Upgrade()
+    {
+        SetDamageUpgrades();
+        SetRangeUpgrades();
+        SetAttackSpeed();
+        //RangeOnlyUpgrades();
+        SetProjSpeed();
+        SetPenetration();
+        price += towerUpgradesList[level - 1].upgCost;
+    }
+
+    private void SetDamageUpgrades()
+    {
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            gameObject.GetComponent<TowerShoot>().SetDamage(towerUpgradesList[level - 1].damage);
+        }
+        else if (gameObject.GetComponent<TowerSplashMelee>() != null)
+        {
+            gameObject.GetComponent<TowerSplashMelee>().SetDamage(towerUpgradesList[level - 1].damage);
+        }
+    }
+    private void SetRangeUpgrades()
+    {
+        if (gameObject.GetComponent<TowerRotateToEnemy>() != null)
+        {
+            gameObject.GetComponent<TowerRotateToEnemy>().SetRange(towerUpgradesList[level - 1].range
+            );
+        }
+    }
+    private void SetAttackSpeed()
+    {
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            gameObject.GetComponent<TowerShoot>().SetAttackCooldown(towerUpgradesList[level - 1].attackSpeed);
+        }
+        else if (gameObject.GetComponent<TowerSplashMelee>() != null)
+        {
+            gameObject.GetComponent<TowerSplashMelee>().SetAttackCooldown(towerUpgradesList[level - 1].attackSpeed);
+        }
+    }
+    private void SetProjSpeed()
+    {
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            gameObject.GetComponent<TowerShoot>().SetProjSpeed(towerUpgradesList[level - 1].projSpeed);
+        }
+    }
+    private void SetPenetration()
+    {
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            gameObject.GetComponent<TowerShoot>().SetPenetration(towerUpgradesList[level - 1].penetration);
+        }
+    }
 }

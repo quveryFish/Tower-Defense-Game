@@ -16,9 +16,9 @@ MonoBehaviour:
   - {fileID: 3985318870339692013, guid: c818fd292545048449413bb9945c085e, type: 3}
   - {fileID: 3985318870339692013, guid: 3a22f3332e02844409156cd4c987fce7, type: 3}
   - {fileID: 6978866270486532218, guid: 4f6282cf3e8994842a8b12114daa6383, type: 3}
-  smallEnemiesInWave: 20
-  mediumEnemiesInWave: 0
+  smallEnemiesInWave: 5
+  mediumEnemiesInWave: 2
   tankyEnemiesInWave: 0
   timeToSpawnSmall: 0.67
-  timeToSpawnMedium: 0
+  timeToSpawnMedium: 1
   timeToSpawnTanky: 0

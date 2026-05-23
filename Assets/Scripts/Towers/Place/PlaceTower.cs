@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Embree;
 using UnityEngine;
 
 public class PlaceTower : MonoBehaviour
@@ -191,6 +192,13 @@ public class PlaceTower : MonoBehaviour
     public void SetCurrentIndex(int index)
     {
         currentIndex = index;
+    }
+    public void RemoveFromCurrentTWList(GameObject tower)
+    {
+        if (placedTowerList.Contains(tower))
+        {
+            placedTowerList.Remove(tower);
+        }
     }
 
 }
