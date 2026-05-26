@@ -16,5 +16,5 @@ MonoBehaviour:
   damage: 2
   attackSpeed: 0.8
   range: 4
-  projSpeed: 50
+  projSpeed: 10
   penetration: 1

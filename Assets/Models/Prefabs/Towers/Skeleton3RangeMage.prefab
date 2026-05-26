@@ -2389,7 +2389,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7593d39d102fa04195c34dcd003f25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TWinfo
-  id: 3
+  startingStats: {fileID: 11400000, guid: 7a96e6feac2df104f82b6d0b35363c17, type: 2}
+  towerUpgradesList:
+  - {fileID: 11400000, guid: 8ff45f21ee9d4ed44a492e704e6192f1, type: 2}
+  - {fileID: 11400000, guid: 11a1fd7b266488b4d82f44d433713f27, type: 2}
+  - {fileID: 11400000, guid: 8614f4dae745c694b9bb23eddf911176, type: 2}
   level: 0
   towerImage: {fileID: 21300000, guid: 6304bcf6197185c4fbcf76fcd166a953, type: 3}
   price: 0

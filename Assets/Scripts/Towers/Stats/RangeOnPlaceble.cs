@@ -98,9 +98,11 @@ public class RangeOnPlaceble : MonoBehaviour
         return placebleRange;
     }
     public void StretchRange(float newRange)
-    {
-        rangeNum = newRange;
-        range.transform.localScale = new Vector3(rangeNum * 2, 0.1f, rangeNum * 2);
+    { if (range != null)
+        {
+            rangeNum = newRange;
+            range.transform.localScale = new Vector3(rangeNum * 2, 0.1f, rangeNum * 2);
+        }
     }
     public void ShowShootRange(bool isEnabled)
     {

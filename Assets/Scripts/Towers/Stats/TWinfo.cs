@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class TWinfo : MonoBehaviour
 {
+    [SerializeField] private TowerUpgrades startingStats;
     public List<TowerUpgrades> towerUpgradesList;
     public int level;
     public Sprite towerImage;
     public int price;
 
-
+    private void Start()
+    {
+        SetStarterStat();
+    }
     public void Upgrade()
     {
         SetDamageUpgrades();
@@ -20,6 +24,42 @@ public class TWinfo : MonoBehaviour
         price += towerUpgradesList[level - 1].upgCost;
     }
 
+    private void SetStarterStat()
+    {
+        //Damage
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            gameObject.GetComponent<TowerShoot>().SetDamage(startingStats.damage);
+        }
+        else if (gameObject.GetComponent<TowerSplashMelee>() != null)
+        {
+            gameObject.GetComponent<TowerSplashMelee>().SetDamage(startingStats.damage);
+        }
+        //Range
+        if (gameObject.GetComponent<TowerRotateToEnemy>() != null)
+        {
+            gameObject.GetComponent<TowerRotateToEnemy>().SetRange(startingStats.range);
+        }
+        //Attack Speed
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            gameObject.GetComponent<TowerShoot>().SetAttackCooldown(startingStats.attackSpeed);
+        }
+        else if (gameObject.GetComponent<TowerSplashMelee>() != null)
+        {
+            gameObject.GetComponent<TowerSplashMelee>().SetAttackCooldown(startingStats.attackSpeed);
+        }
+        //Projectile Speed
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            gameObject.GetComponent<TowerShoot>().SetProjSpeed(startingStats.projSpeed);
+        }
+        //Penetration
+        if (gameObject.GetComponent<TowerShoot>() != null)
+        {
+            gameObject.GetComponent<TowerShoot>().SetPenetration(startingStats.penetration);
+        }
+    }
     private void SetDamageUpgrades()
     {
         if (gameObject.GetComponent<TowerShoot>() != null)

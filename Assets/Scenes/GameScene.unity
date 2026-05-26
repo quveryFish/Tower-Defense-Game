@@ -9731,40 +9731,40 @@ PrefabInstance:
       objectReference: {fileID: 1995167122}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: waveSriptableObj.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 420119a6089224a4ebf014ea9c797972, type: 2}
+      objectReference: {fileID: 11400000, guid: 6386b5c09875d74428428c4dc448eaab, type: 2}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 7913cec290090c549b9f6c2394e1f3ff, type: 2}
+      objectReference: {fileID: 11400000, guid: 420119a6089224a4ebf014ea9c797972, type: 2}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: bb974591e2a7ba346aefd74bb3e79a52, type: 2}
+      objectReference: {fileID: 11400000, guid: 7913cec290090c549b9f6c2394e1f3ff, type: 2}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: c30d53e72f3c24a458944e65c375c24f, type: 2}
+      objectReference: {fileID: 11400000, guid: bb974591e2a7ba346aefd74bb3e79a52, type: 2}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 1a4876180a073d64390b593c0fecc7d1, type: 2}
+      objectReference: {fileID: 11400000, guid: c30d53e72f3c24a458944e65c375c24f, type: 2}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 3c6cee35e0b225848808a398793c823d, type: 2}
+      objectReference: {fileID: 11400000, guid: 1a4876180a073d64390b593c0fecc7d1, type: 2}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[6]'
       value: 
-      objectReference: {fileID: 11400000, guid: f8364cc5f9c533e4ab26eb5871d978eb, type: 2}
+      objectReference: {fileID: 11400000, guid: 3c6cee35e0b225848808a398793c823d, type: 2}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[7]'
       value: 
-      objectReference: {fileID: 11400000, guid: 6386b5c09875d74428428c4dc448eaab, type: 2}
+      objectReference: {fileID: 11400000, guid: f8364cc5f9c533e4ab26eb5871d978eb, type: 2}
     - target: {fileID: 790683036975907392, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

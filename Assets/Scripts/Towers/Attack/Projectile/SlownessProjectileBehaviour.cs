@@ -8,6 +8,7 @@ public class SlownessProjectileBehaviour : MonoBehaviour
 
     private Vector3 direction;
     private float speed = 4f;
+    private float penetration = 1f;
 
     private float slownessPercentage = 0.6f;
 
@@ -28,8 +29,17 @@ public class SlownessProjectileBehaviour : MonoBehaviour
             {
                 //other.GetComponent<EnemyHealth>().TakeDamage(damage);
                 other.GetComponent<EnemyMovement>().SlowdownEnemy(slownessPercentage);
-                Destroy(gameObject);
                 isHit = true;
+                if (isHit = true && penetration > 0)
+                {
+                    penetration--;
+                    isHit = false;
+                    if (penetration <= 0)
+                    {
+                        penetration = 0;
+                        Destroy(gameObject);
+                    }
+                }
             }
         }
     }

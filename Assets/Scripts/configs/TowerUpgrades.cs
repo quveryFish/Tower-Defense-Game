@@ -7,6 +7,7 @@ public class TowerUpgrades : ScriptableObject
     public int damage;
     public float attackSpeed;
     public float range;
+    [Header("Projectile")]
     public float projSpeed;
     public int penetration;
 }

@@ -7,7 +7,7 @@ public class TowerShoot : MonoBehaviour
     [Header("Stats")]
     private float attackCooldown = 1f;
     [SerializeField] private float attackMaxCooldown = 1f;
-    [SerializeField] private float bulletSpeed = 50f;
+    [SerializeField] private float bulletSpeed = 7f;
     [SerializeField] private int damage = 1;
     [Header("Upgrades")]
     [SerializeField] private int penetration = 1;

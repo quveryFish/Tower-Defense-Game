@@ -2706,7 +2706,7 @@ MonoBehaviour:
   attackMaxCooldown: 1.2
   bulletSpeed: 10
   damage: 1
-  penetration: 3
+  penetration: 2
 --- !u!114 &359773294658441879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2719,7 +2719,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7593d39d102fa04195c34dcd003f25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TWinfo
-  id: 4
+  startingStats: {fileID: 11400000, guid: 88348db92420aaf4c897f4677eeb65aa, type: 2}
+  towerUpgradesList:
+  - {fileID: 11400000, guid: 5d4c2ba11ea4e4f4fb5e96c6b15b3e83, type: 2}
+  - {fileID: 11400000, guid: e2006c6f7b5adfa4eb65ec40fcc00566, type: 2}
+  - {fileID: 11400000, guid: cd32bb935e15551428ccb0719d289ddf, type: 2}
   level: 0
   towerImage: {fileID: 21300000, guid: 6e09e6b9f48fa2f4094e12236e63b084, type: 3}
   price: 0
