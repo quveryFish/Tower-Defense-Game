@@ -7,12 +7,12 @@ public class TWinfoPanel : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject infoPanelRight;
     [SerializeField] private GameObject infoPanelLeft;
+    [SerializeField] private GameObject bgCloseButton;
     [SerializeField] private List<GameObject> TWinfoSlotsRight;
     [SerializeField] private List<GameObject> TWinfoSlotsLeft;
     [SerializeField] private GameObject currentTW;
     [SerializeField] private Camera cam;
 
-    private int TWid;
     private int TWlevel;
     private Sprite TWtowerImage;
     private int TWsellprice;
@@ -72,7 +72,8 @@ public class TWinfoPanel : MonoBehaviour
             infoPanelLeft.SetActive(false);
             TWinfoSlotsRight[0].GetComponent<Image>().sprite = TWtowerImage;
             UpdateTextRight();
-
+            GetComponentInChildren<TwStats>().ClearUpg();
+            bgCloseButton.SetActive(true);
         }
         //left panel
         else
@@ -81,7 +82,8 @@ public class TWinfoPanel : MonoBehaviour
             infoPanelLeft.SetActive(true);
             TWinfoSlotsLeft[0].GetComponent<Image>().sprite = TWtowerImage;
             UpdateTextLeft();
-
+            GetComponentInChildren<TwStats>().ClearUpg();
+            bgCloseButton.SetActive(true);
         }
         currentTW.GetComponent<RangeOnPlaceble>().SetIsUpgradable(true);
         currentTW.GetComponent<RangeOnPlaceble>().ShowShootRange(true);
@@ -132,6 +134,7 @@ public class TWinfoPanel : MonoBehaviour
         currentTW = null;
         infoPanelRight.SetActive(false);
         infoPanelLeft.SetActive(false);
+        bgCloseButton.SetActive(false);
     }
     public void SellTW()
     {
@@ -159,12 +162,15 @@ public class TWinfoPanel : MonoBehaviour
             currentTW.GetComponent<TWinfo>().level += 1;
             BankManager.Instance.SubtractMoney(currentUpgPrice);
             currentTW.GetComponent<TWinfo>().Upgrade();
+            GetComponentInChildren<TwStats>().ClearUpg();
             UpdateTextRight();
             UpdateTextLeft();
             //HidePanel();
         }
     }
 
-
-
+    public TWinfo GetCurrentTW()
+    {
+        return currentTW.GetComponent<TWinfo>();
+    }
 }

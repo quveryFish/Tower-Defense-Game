@@ -26,7 +26,7 @@ public class CameraRotation : MonoBehaviour
     private void HandleInput()
     {
         Vector2 inputDelta = Vector2.zero;
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(2))
         {
             inputDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * sensitivity * Time.deltaTime;
             yaw += inputDelta.x;
