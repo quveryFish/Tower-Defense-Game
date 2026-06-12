@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class EnemyMovement : MonoBehaviour
     {
         transform.LookAt(checkpointsOnMap[currentCheckpointIndex].position + new Vector3(0, -0.5f, 0));
         rb.linearVelocity = ((checkpointsOnMap[currentCheckpointIndex].position + new Vector3(0, -0.5f, 0)) - transform.position).normalized * moveSpeed;
+        float distanceToTarget = Vector3.Distance(transform.position, checkpointsOnMap[currentCheckpointIndex].position);
+        if (distanceToTarget <= 0.5f)
+        {
+            //Debug.Log("Reached checkpoint: " + currentCheckpointIndex);
+            currentCheckpointIndex++;
+        }
 
     }
 
@@ -36,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Checkpoint"))
@@ -44,6 +51,7 @@ public class EnemyMovement : MonoBehaviour
             currentCheckpointIndex++;
         }
     }
+    */
 
     public void SlowdownEnemy(float speedPercentage)
     {
