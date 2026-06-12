@@ -13,7 +13,6 @@ public class TWinfo : MonoBehaviour
     {
         SetStarterStat();
         level = 1;
-        Debug.Log($"current lvl: {level}");
     }
     public void Upgrade()
     {
@@ -24,7 +23,6 @@ public class TWinfo : MonoBehaviour
         SetProjSpeed();
         SetPenetration();
         price += towerUpgradesList[level - 1].upgCost;
-        Debug.Log($"current lvl: {level}");
     }
 
     private void SetStarterStat()

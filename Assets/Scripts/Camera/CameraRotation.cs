@@ -5,9 +5,6 @@ public class CameraRotation : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float sensitivity = 200f;
     private float distance = 40f;
-
-    
-
     private float yaw = 0f;
     private float pitch = 0f;
     private void Start()

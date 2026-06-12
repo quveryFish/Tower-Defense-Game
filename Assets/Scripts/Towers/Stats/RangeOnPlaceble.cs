@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class RangeOnPlaceble : MonoBehaviour
 {
-    private bool isPlaceble;
+    private bool canBePlaceble;
     private float rangeNum;
     private float areaRangeNum = 5;
-
+    private SkinnedMeshRenderer[] renderers;
     private bool isUpgradable;
 
     private GameObject range;
@@ -18,14 +18,15 @@ public class RangeOnPlaceble : MonoBehaviour
 
     private void Start()
     {
+        renderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
         isUpgradable = false;
-        isPlaceble = PlaceTower.Instance.GetIsPlacable();
+        canBePlaceble = PlaceTower.Instance.GetCanBePlacable();
         rangeNum = this.gameObject.GetComponent<TowerRotateToEnemy>().GetRange();
         
     }
     private void Update()
     {
-        if (isPlaceble)
+        if (canBePlaceble)
         {
             if (range == null)
             {
@@ -33,26 +34,26 @@ public class RangeOnPlaceble : MonoBehaviour
 
                 CreateLimitingRange();
 
-                isPlaceble = PlaceTower.Instance.GetIsPlacable();
+                canBePlaceble = PlaceTower.Instance.GetCanBePlacable();
             }
             else
             {
                 range.SetActive(true);
 
-                isPlaceble = PlaceTower.Instance.GetIsPlacable();
+                canBePlaceble = PlaceTower.Instance.GetCanBePlacable();
             }
 
         }
         else if (range != null 
             && range.activeSelf == true
-            && !isPlaceble && isUpgradable == false)
+            && !canBePlaceble && isUpgradable == false)
         {
             placebleRange.SetActive(false);
             //Debug.Log("Range deactivated");
             range.SetActive(false);
 
 
-            isPlaceble = PlaceTower.Instance.GetIsPlacable();
+            canBePlaceble = PlaceTower.Instance.GetCanBePlacable();
         }
     }
 
@@ -62,10 +63,17 @@ public class RangeOnPlaceble : MonoBehaviour
         if(other.gameObject.GetComponent<IsLimiterRange>())
         {
             overlapCount++;
-            if (overlapCount > 0)
+            //Debug.Log("Overlap count: " + overlapCount);
+            if (overlapCount > 0 && canBePlaceble)
             {
                 canPlace = false;
+                foreach (SkinnedMeshRenderer r in renderers)
+                {
+                    r.material.color = Color.orange;
+                }
+                //Debug.Log("Cannot place tower here! Overlap count: " + overlapCount);
             }
+            
         }
     }
     private void OnTriggerExit(Collider other)
@@ -73,9 +81,13 @@ public class RangeOnPlaceble : MonoBehaviour
         if (other.gameObject.GetComponent<IsLimiterRange>())
         {
             overlapCount--;
-            if (overlapCount <= 0)
+            if (overlapCount <= 0 && canBePlaceble)
             {
                 canPlace = true;
+                foreach (SkinnedMeshRenderer r in renderers)
+                {
+                    r.material.color = Color.green;
+                }
             }
         }
     }

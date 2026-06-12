@@ -18,7 +18,7 @@ public class PlaceTower : MonoBehaviour
     private int currentIndex = 0;
     private Material currentMat;
 
-    private bool isPlacable = false;
+    private bool canBePlacable = false;
     private bool isButtonPressed = false;
 
     private int currentTWcost;
@@ -26,7 +26,7 @@ public class PlaceTower : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
 
-
+   
 
     public event Action OnPlaceTower;
 
@@ -53,17 +53,17 @@ public class PlaceTower : MonoBehaviour
                 OnShowTower?.Invoke();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && isPlacable && currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canBePlacable && currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
         {
             ButtonClickToTrue(currentTWcost);
             OnPlaceTower?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && isPlacable)
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && canBePlacable)
         {
             CancelPlaceTW();
         }
 
-        if (isPlacable && Physics.Raycast(ray, out hit, 1000, ground.value, QueryTriggerInteraction.Ignore))// && hit.collider.name == "Platform")
+        if (canBePlacable && Physics.Raycast(ray, out hit, 1000, ground.value, QueryTriggerInteraction.Ignore))// && hit.collider.name == "Platform")
         {
             currentTow.transform.position = hit.point;
         }
@@ -91,30 +91,14 @@ public class PlaceTower : MonoBehaviour
         currentTow.GetComponent<TWinfo>().price = currentTWcost;
 
 
-        SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
-        if (currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
-        {
-            foreach (SkinnedMeshRenderer r in renderers)
-            {
-                r.material.color = Color.green;
-            }
-        }
-        else if (currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace() == false)
-        {
-            foreach (SkinnedMeshRenderer r in renderers)
-            {
-                r.material.color = Color.red;
-            }
-        }
 
-
-            isPlacable = true;
+        canBePlacable = true;
         isButtonPressed = false;
     }
 
     private void PlaceTW()
     {
-        isPlacable = false;
+        canBePlacable = false;
         isButtonPressed = false;
         placedTowerList.Add(currentTow);
 
@@ -132,7 +116,7 @@ public class PlaceTower : MonoBehaviour
 
     private void CancelPlaceTW()
     {
-        isPlacable = false;
+        canBePlacable = false;
         isButtonPressed = false;
         if (currentTow == null) return;
         Destroy(currentTow);
@@ -180,9 +164,9 @@ public class PlaceTower : MonoBehaviour
         }
     }
 
-    public bool GetIsPlacable()
+    public bool GetCanBePlacable()
     {
-        return isPlacable;
+        return canBePlacable;
     }
     public void ButtonClickToTrue(int twCost)
     {
