@@ -7,6 +7,8 @@ public class TowerRotateToEnemy : MonoBehaviour
 
     [SerializeField] private GameObject firstEnemy;
     private bool firstEnemyInRange = false;
+
+    private bool canSeeHiden = false;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -25,10 +27,21 @@ public class TowerRotateToEnemy : MonoBehaviour
 
         foreach (var hit in hitColliders)
         {
-            if (hit.GetComponent<EnemyMovement>() != null && firstEnemy == null && firstEnemyInRange == false)
+            if (hit.GetComponent<EnemyHealth>() != null && firstEnemy == null && firstEnemyInRange == false)
             {
-                //Debug.Log("Enemy Detected");
-                firstEnemy = hit.gameObject;
+                if (hit.GetComponent<EnemyHealth>().GetIsHiden() && !canSeeHiden)
+                {
+                    continue;
+                }
+                else if (hit.GetComponent<EnemyHealth>().GetIsHiden() && canSeeHiden)
+                {
+                    firstEnemy = hit.gameObject;
+                }
+                else if (!hit.GetComponent<EnemyHealth>().GetIsHiden())
+                {
+                    firstEnemy = hit.gameObject;
+                }
+
             }
             else if (firstEnemy != null)
             {
@@ -88,5 +101,9 @@ public class TowerRotateToEnemy : MonoBehaviour
     public GameObject GetFirstEnemy()
     {
         return firstEnemy;
+    }
+    public void SetCanSeeHiden(bool value)
+    {
+        canSeeHiden = value;
     }
 }

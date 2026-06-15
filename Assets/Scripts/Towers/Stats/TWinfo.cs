@@ -19,6 +19,7 @@ public class TWinfo : MonoBehaviour
         SetDamageUpgrades();
         SetRangeUpgrades();
         SetAttackSpeed();
+        SetCanSeeHiden();
         //RangeOnlyUpgrades();
         SetProjSpeed();
         SetPenetration();
@@ -89,6 +90,13 @@ public class TWinfo : MonoBehaviour
         else if (gameObject.GetComponent<TowerSplashMelee>() != null)
         {
             gameObject.GetComponent<TowerSplashMelee>().SetAttackCooldown(towerUpgradesList[level - 1].attackSpeed);
+        }
+    }
+    private void SetCanSeeHiden()
+    {
+        if (gameObject.GetComponent<TowerRotateToEnemy>() != null)
+        {
+            gameObject.GetComponent<TowerRotateToEnemy>().SetCanSeeHiden(towerUpgradesList[level - 1].canSeeHiden);
         }
     }
     private void SetProjSpeed()

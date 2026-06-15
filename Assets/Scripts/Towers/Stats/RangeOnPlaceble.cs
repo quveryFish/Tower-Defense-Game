@@ -67,9 +67,12 @@ public class RangeOnPlaceble : MonoBehaviour
             if (overlapCount > 0 && canBePlaceble)
             {
                 canPlace = false;
-                foreach (SkinnedMeshRenderer r in renderers)
+                if (renderers != null)
                 {
-                    r.material.color = Color.orange;
+                    foreach (SkinnedMeshRenderer r in renderers)
+                    {
+                        r.material.color = Color.orange;
+                    }
                 }
                 //Debug.Log("Cannot place tower here! Overlap count: " + overlapCount);
             }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class TwStats : MonoBehaviour
 {
     [SerializeField] private List<Text> currentStatText; // damage, range, attack speed, projectile speed, penetration
+    [SerializeField] private Image hiddenStatus;
     [SerializeField] private List<GameObject> upgStatText;
     [SerializeField] private List<GameObject> arrows;
     private TowerUpgrades upgrade;
@@ -29,6 +30,7 @@ public class TwStats : MonoBehaviour
                 currentStatText[2].text = $"Attack Speed - {currentTWinfo.towerUpgradesList[0].attackSpeed}";
                 currentStatText[3].text = $"Projectile Speed - {currentTWinfo.towerUpgradesList[0].projSpeed}";
                 currentStatText[4].text = $"Penetration - {currentTWinfo.towerUpgradesList[0].penetration}";
+                CheckCanSeeHidden();
             }
             else
             {
@@ -37,7 +39,7 @@ public class TwStats : MonoBehaviour
                     CheckStat();
                     SetUpgradesText();
                 }
-
+                CheckCanSeeHidden();
             }
 
         }
@@ -86,6 +88,17 @@ public class TwStats : MonoBehaviour
             upgStatText[4].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].penetration}";
         }
     }
+    private void CheckCanSeeHidden()
+    {
+        if (upgrade.canSeeHiden)
+        {
+            hiddenStatus.color = Color.green;
+        }
+        else
+        {
+            hiddenStatus.color = Color.red;
+        }
+    }
     public void ClearUpg()
     {
         for (int i = 0; i < arrows.Count; i++)
@@ -93,6 +106,7 @@ public class TwStats : MonoBehaviour
             arrows[i].SetActive(false);
             upgStatText[i].SetActive(false);
         }
+        CheckCanSeeHidden();
     }
 
 }

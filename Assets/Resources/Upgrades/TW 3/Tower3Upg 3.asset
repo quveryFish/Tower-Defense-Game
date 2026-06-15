@@ -16,5 +16,6 @@ MonoBehaviour:
   damage: 1
   attackSpeed: 0.6
   range: 3
+  canSeeHiden: 1
   projSpeed: 11
   penetration: 4

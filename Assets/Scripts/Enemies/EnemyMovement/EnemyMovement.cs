@@ -5,6 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float distance = 0.5f;
     private float originalMoveSpeed;
     private List<Transform> checkpointsOnMap;
     private Rigidbody rb;
@@ -24,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
         transform.LookAt(checkpointsOnMap[currentCheckpointIndex].position + new Vector3(0, -0.5f, 0));
         rb.linearVelocity = ((checkpointsOnMap[currentCheckpointIndex].position + new Vector3(0, -0.5f, 0)) - transform.position).normalized * moveSpeed;
         float distanceToTarget = Vector3.Distance(transform.position, checkpointsOnMap[currentCheckpointIndex].position);
-        if (distanceToTarget <= 0.5f)
+        if (distanceToTarget <= distance)
         {
             //Debug.Log("Reached checkpoint: " + currentCheckpointIndex);
             currentCheckpointIndex++;
