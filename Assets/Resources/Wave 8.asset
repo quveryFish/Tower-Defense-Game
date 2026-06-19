@@ -19,6 +19,7 @@ MonoBehaviour:
   smallEnemiesInWave: 5
   mediumEnemiesInWave: 20
   tankyEnemiesInWave: 0
-  timeToSpawnSmall: 0
+  timeToSpawnSmall: 0.6
   timeToSpawnMedium: 1.2
   timeToSpawnTanky: 1
+  endWaveMoneyReward: 100

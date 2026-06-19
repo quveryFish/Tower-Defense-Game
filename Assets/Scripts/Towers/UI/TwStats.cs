@@ -90,6 +90,10 @@ public class TwStats : MonoBehaviour
     }
     private void CheckCanSeeHidden()
     {
+        if (upgrade == null)
+        {
+            return;
+        }
         if (upgrade.canSeeHiden)
         {
             hiddenStatus.color = Color.green;

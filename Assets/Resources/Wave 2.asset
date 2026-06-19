@@ -22,3 +22,4 @@ MonoBehaviour:
   timeToSpawnSmall: 1
   timeToSpawnMedium: 1.52
   timeToSpawnTanky: 0
+  endWaveMoneyReward: 50

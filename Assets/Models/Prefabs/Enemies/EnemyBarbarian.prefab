@@ -1064,6 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  distance: 0.55
 --- !u!114 &1952647654410567225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1078,6 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   moneyValue: 4
+  isHiden: 0
   enemyType: 0
 --- !u!114 &2039425707054233712
 MonoBehaviour:

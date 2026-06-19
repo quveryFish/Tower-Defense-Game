@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private List<WaveSriptableObjScript> waveSriptableObj;
-
+    [SerializeField] private List<GameObject> enemies;
     [SerializeField] private Text waveTimeText;
     //private CreateEnemy createEnemy;
     private float timeBetweenWaves = 0;
@@ -74,6 +74,7 @@ public class WaveManager : MonoBehaviour
             //End of wave
             if (currentWave <= waveSriptableObj.Count)
             {
+                BankManager.Instance.AddMoney(waveSriptableObj[currentWave].endWaveMoneyReward);
                 if (currentWave < waveSriptableObj.Count)
                 {
                     currentWave++;

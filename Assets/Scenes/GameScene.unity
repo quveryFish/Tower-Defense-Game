@@ -8454,7 +8454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BankManager
   moneyText: {fileID: 1451241912}
-  money: 75
+  money: 7500
 --- !u!4 &1157071116
 Transform:
   m_ObjectHideFlags: 0
