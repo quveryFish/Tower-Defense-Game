@@ -4,8 +4,8 @@ using UnityEngine;
 public class TWinfo : MonoBehaviour
 {
     //[SerializeField] private TowerUpgrades startingStats;
-    public List<TowerUpgrades> towerUpgradesList;
-    public int level = 1;
+    public List<TowerUpgradesSO> towerUpgradesList;
+    public int level = 0;
     public Sprite towerImage;
     public int price;
 

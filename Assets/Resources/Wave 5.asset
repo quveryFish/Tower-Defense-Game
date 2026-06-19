@@ -13,13 +13,7 @@ MonoBehaviour:
   m_Name: Wave 5
   m_EditorClassIdentifier: Assembly-CSharp::WaveSriptableObjScript
   enemiesInWave:
-  - {fileID: 3985318870339692013, guid: c818fd292545048449413bb9945c085e, type: 3}
-  - {fileID: 3985318870339692013, guid: 3a22f3332e02844409156cd4c987fce7, type: 3}
-  - {fileID: 6978866270486532218, guid: 4f6282cf3e8994842a8b12114daa6383, type: 3}
-  smallEnemiesInWave: 0
-  mediumEnemiesInWave: 0
-  tankyEnemiesInWave: 2
-  timeToSpawnSmall: 0.4
-  timeToSpawnMedium: 1.1
-  timeToSpawnTanky: 3
+  - enemyPrefab: {fileID: 1089566171208371422, guid: 44a1329dca5fa0c4498fdcd7aabf4f57, type: 3}
+    timeToSpawn: 0.6
+    enemyCount: 10
   endWaveMoneyReward: 100

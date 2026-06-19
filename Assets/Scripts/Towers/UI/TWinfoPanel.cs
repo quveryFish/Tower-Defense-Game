@@ -13,6 +13,9 @@ public class TWinfoPanel : MonoBehaviour
     [SerializeField] private GameObject currentTW;
     [SerializeField] private Camera cam;
 
+    [SerializeField] private TwStats rightPanelStats;
+    [SerializeField] private TwStats leftPanelStats;
+
     private int TWlevel;
     private Sprite TWtowerImage;
     private int TWsellprice;
@@ -47,14 +50,10 @@ public class TWinfoPanel : MonoBehaviour
                     if (currentTW.transform.position.x <= 0)
                     {
                         isPanelRight = true;
-                        //infoPanelRight.SetActive(true);
-                        //infoPanelLeft.SetActive(false);
                     }
                     else
                     {
                         isPanelRight = false;
-                        //infoPanelRight.SetActive(false);
-                        //infoPanelLeft.SetActive(true);
                     }
                     SetPanelInfo(isPanelRight);
                 }
@@ -72,8 +71,14 @@ public class TWinfoPanel : MonoBehaviour
             infoPanelLeft.SetActive(false);
             TWinfoSlotsRight[0].GetComponent<Image>().sprite = TWtowerImage;
             UpdateTextRight();
-            GetComponentInChildren<TwStats>().ClearUpg();
+
+            rightPanelStats.ClearUpg();
+
+            rightPanelStats.SetStats(GetCurrentTW());
+
             bgCloseButton.SetActive(true);
+
+
         }
         //left panel
         else
@@ -82,8 +87,14 @@ public class TWinfoPanel : MonoBehaviour
             infoPanelLeft.SetActive(true);
             TWinfoSlotsLeft[0].GetComponent<Image>().sprite = TWtowerImage;
             UpdateTextLeft();
-            GetComponentInChildren<TwStats>().ClearUpg();
+
+            leftPanelStats.ClearUpg();
+
+            leftPanelStats.SetStats(GetCurrentTW());
+
             bgCloseButton.SetActive(true);
+
+
         }
         currentTW.GetComponent<RangeOnPlaceble>().SetIsUpgradable(true);
         currentTW.GetComponent<RangeOnPlaceble>().ShowShootRange(true);
@@ -165,11 +176,13 @@ public class TWinfoPanel : MonoBehaviour
             GetComponentInChildren<TwStats>().ClearUpg();
             UpdateTextRight();
             UpdateTextLeft();
-            //HidePanel();
+
+            rightPanelStats.SetStats(GetCurrentTW());
+            leftPanelStats.SetStats(GetCurrentTW());
         }
     }
 
-    public TWinfo GetCurrentTW()
+    private TWinfo GetCurrentTW()
     {
         return currentTW.GetComponent<TWinfo>();
     }

@@ -8,46 +8,36 @@ public class TwStats : MonoBehaviour
     [SerializeField] private Image hiddenStatus;
     [SerializeField] private List<GameObject> upgStatText;
     [SerializeField] private List<GameObject> arrows;
-    private TowerUpgrades upgrade;
+    private TowerUpgradesSO upgrade;
     private TWinfo currentTWinfo;
-
-    private void FixedUpdate()
+    public void SetStats(TWinfo currentTWinfo_)
     {
-        if (currentTWinfo == null)
+        currentTWinfo = currentTWinfo_;
+        if (currentTWinfo.level >= 1)
         {
-            currentTWinfo = GetComponentInParent<TWinfoPanel>().GetCurrentTW();
+            upgrade = currentTWinfo.towerUpgradesList[currentTWinfo.level - 1];
+        }
+        if (currentTWinfo.level == 0)
+        {
+            currentStatText[0].text = $"Damage - {currentTWinfo.towerUpgradesList[0].damage}";
+            currentStatText[1].text = $"Range - {currentTWinfo.towerUpgradesList[0].range}";
+            currentStatText[2].text = $"Attack Speed - {currentTWinfo.towerUpgradesList[0].attackSpeed}";
+            currentStatText[3].text = $"Projectile Speed - {currentTWinfo.towerUpgradesList[0].projSpeed}";
+            currentStatText[4].text = $"Penetration - {currentTWinfo.towerUpgradesList[0].penetration}";
+            CheckCanSeeHidden();
         }
         else
         {
-            if (currentTWinfo.level >= 1)
+            if (currentTWinfo.level - 1 < currentTWinfo.towerUpgradesList.Count)
             {
-                upgrade = currentTWinfo.towerUpgradesList[currentTWinfo.level - 1];
+                CheckStat();
+                SetNewCurrentText();
             }
-            if (currentTWinfo.level == 0)
-            {
-                currentStatText[0].text = $"Damage - {currentTWinfo.towerUpgradesList[0].damage}";
-                currentStatText[1].text = $"Range - {currentTWinfo.towerUpgradesList[0].range}";
-                currentStatText[2].text = $"Attack Speed - {currentTWinfo.towerUpgradesList[0].attackSpeed}";
-                currentStatText[3].text = $"Projectile Speed - {currentTWinfo.towerUpgradesList[0].projSpeed}";
-                currentStatText[4].text = $"Penetration - {currentTWinfo.towerUpgradesList[0].penetration}";
-                CheckCanSeeHidden();
-            }
-            else
-            {
-                if (currentTWinfo.level < currentTWinfo.towerUpgradesList.Count)
-                {
-                    CheckStat();
-                    SetUpgradesText();
-                }
-                CheckCanSeeHidden();
-            }
-
+            CheckCanSeeHidden();
         }
-
-
+        
     }
-
-    private void SetUpgradesText()
+    private void SetNewCurrentText()
     {
         currentStatText[0].text = $"Damage - {upgrade.damage}";
         currentStatText[1].text = $"Range - {upgrade.range}";
@@ -57,43 +47,40 @@ public class TwStats : MonoBehaviour
     }
     private void CheckStat()
     {
-        if (upgrade.damage != currentTWinfo.towerUpgradesList[currentTWinfo.level].damage)
+        if (upgrade.damage != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].damage)
         {
             arrows[0].SetActive(true);
             upgStatText[0].SetActive(true);
             upgStatText[0].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].damage}";
         }
-        if (upgrade.range != currentTWinfo.towerUpgradesList[currentTWinfo.level].range)
+        if (upgrade.range != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].range)
         {
             arrows[1].SetActive(true);
             upgStatText[1].SetActive(true);
             upgStatText[1].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].range}";
         }
-        if (upgrade.attackSpeed != currentTWinfo.towerUpgradesList[currentTWinfo.level].attackSpeed)
+        if (upgrade.attackSpeed != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].attackSpeed)
         {
             arrows[2].SetActive(true);
             upgStatText[2].SetActive(true);
             upgStatText[2].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].attackSpeed}";
         }
-        if (upgrade.projSpeed != currentTWinfo.towerUpgradesList[currentTWinfo.level].projSpeed)
+        if (upgrade.projSpeed != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].projSpeed)
         {
             arrows[3].SetActive(true);
             upgStatText[3].SetActive(true);
             upgStatText[3].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].projSpeed}";
         }
-        if (upgrade.penetration != currentTWinfo.towerUpgradesList[currentTWinfo.level].penetration)
+        if (upgrade.penetration != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].penetration)
         {
             arrows[4].SetActive(true);
             upgStatText[4].SetActive(true);
             upgStatText[4].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].penetration}";
         }
+        CheckCanSeeHidden();
     }
     private void CheckCanSeeHidden()
     {
-        if (upgrade == null)
-        {
-            return;
-        }
         if (upgrade.canSeeHiden)
         {
             hiddenStatus.color = Color.green;
@@ -110,7 +97,6 @@ public class TwStats : MonoBehaviour
             arrows[i].SetActive(false);
             upgStatText[i].SetActive(false);
         }
-        CheckCanSeeHidden();
     }
 
 }

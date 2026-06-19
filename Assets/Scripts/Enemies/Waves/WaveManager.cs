@@ -5,24 +5,18 @@ using UnityEngine.UI;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private List<WaveSriptableObjScript> waveSriptableObj;
-    [SerializeField] private List<GameObject> enemies;
     [SerializeField] private Text waveTimeText;
-    //private CreateEnemy createEnemy;
     private float timeBetweenWaves = 0;
     public int currentWave = 0;
 
-    //public int enemiesLast;
-    [SerializeField] private int enemiesSmall;
-    [SerializeField] private int enemiesMedium;
-    [SerializeField] private int enemiesTanky;
-    private bool noEnemiesLeftToSpawn = false;
-
+    public int currentEnemiesLast;
+    private int currentEnemy;
 
     private bool isWaveStarted = false;
     private bool isWaveCompleted = false;
 
-    int enemyTypeNum;
-    bool spawnEnabled = false;
+    //int enemyTypeNum;
+    //bool spawnEnabled = false;
     private void Start()
     {
         waveTimeText.text = "";
@@ -30,17 +24,9 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+        WaveFirstStart();
 
-        if ((Input.GetKeyDown(KeyCode.Space) && GetIsWaveStarted() == false))
-        {
-            isWaveStarted = true;//Починаєм гру
-            enemiesSmall = waveSriptableObj[currentWave].smallEnemiesInWave;
-            enemiesMedium = waveSriptableObj[currentWave].mediumEnemiesInWave;
-            enemiesTanky = waveSriptableObj[currentWave].tankyEnemiesInWave;
-            noEnemiesLeftToSpawn = false;
-            Debug.Log("Wave Started");
-        }
-
+        //timer text between waves
         if (timeBetweenWaves > 0)
         {
             waveTimeText.text = $"Next wave in {timeBetweenWaves.ToString("F1")} seconds.";
@@ -50,6 +36,49 @@ public class WaveManager : MonoBehaviour
             waveTimeText.text = "";
         }
 
+        EndOfWave();
+
+        WaveSetup();
+    }
+
+    private void WaveFirstStart()
+    {
+        if ((Input.GetKeyDown(KeyCode.Space) && GetIsWaveStarted() == false))
+        {
+            isWaveStarted = true;//Починаєм гру
+
+            currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
+            Debug.Log("Wave Started");
+        }
+    }
+    private void EndOfWave()
+    {
+        if (currentEnemy == waveSriptableObj[currentWave].enemiesInWave.Count - 1 && currentEnemiesLast <= 0
+            && isWaveStarted == true
+            && CreateEnemy.Instance.GetEnemiesRemainsAlive().Count == 0)
+        {
+            //End of wave
+
+            if (currentWave <= waveSriptableObj.Count)
+            {
+                BankManager.Instance.AddMoney(waveSriptableObj[currentWave].endWaveMoneyReward);
+                currentWave++;
+
+                isWaveStarted = false;
+                isWaveCompleted = true;
+                timeBetweenWaves = 6.7f;
+                //Debug.Log($"Wave {currentWave} completed. Next wave will start in {timeBetweenWaves} seconds.");
+
+            }
+            else
+            {
+                Debug.Log("All waves completed! You win!");
+            }
+        }
+    }
+    private void WaveSetup()
+    {
+        //Check if wave is completed and start timer for next wave
         if (isWaveStarted == true)
         {
             isWaveCompleted = false;
@@ -60,93 +89,31 @@ public class WaveManager : MonoBehaviour
             if (timeBetweenWaves <= 0 && currentWave <= waveSriptableObj.Count)
             {
                 isWaveStarted = true;
-                enemiesSmall = waveSriptableObj[currentWave].smallEnemiesInWave;
-                enemiesMedium = waveSriptableObj[currentWave].mediumEnemiesInWave;
-                enemiesTanky = waveSriptableObj[currentWave].tankyEnemiesInWave;
+                currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
+                //currentEnemy = 0;
             }
-        }
-
-
-        if ((enemiesSmall <= 0 && enemiesMedium <= 0 && enemiesTanky <= 0)
-            && CreateEnemy.Instance.GetEnemiesRemainsCount() <= 0 
-            && isWaveStarted == true)
-        {
-            //End of wave
-            if (currentWave <= waveSriptableObj.Count)
-            {
-                BankManager.Instance.AddMoney(waveSriptableObj[currentWave].endWaveMoneyReward);
-                if (currentWave < waveSriptableObj.Count)
-                {
-                    currentWave++;
-                }
-                else
-                {
-                    Debug.Log("All waves completed! You win!");
-                }
-                    isWaveStarted = false;
-                isWaveCompleted = true;
-                timeBetweenWaves = 6.7f;
-                //Debug.Log($"Wave {currentWave} completed. Next wave will start in {timeBetweenWaves} seconds.");
-
-            }
-
         }
     }
 
     public GameObject SelectEnemy()
     {
-        GameObject enemyToSpawn = null;
-        if (spawnEnabled == false && (enemiesSmall > 0 || enemiesMedium > 0 || enemiesTanky > 0) && !noEnemiesLeftToSpawn)
+        GameObject selectedEn = null;
+        if (currentEnemiesLast <= 0 && currentEnemy < waveSriptableObj[currentWave].enemiesInWave.Count - 1)
         {
-            if (enemiesSmall > 0)
-            {
-                enemyTypeNum = 0;
-                CreateEnemy.Instance.SetTimer(waveSriptableObj[currentWave].timeToSpawnSmall);
-
-            }
-            else if (enemiesMedium > 0)
-            {
-                enemyTypeNum = 1;
-                CreateEnemy.Instance.SetTimer(waveSriptableObj[currentWave].timeToSpawnMedium);
-            }
-            else if (enemiesTanky > 0)
-            {
-                enemyTypeNum = 2;
-                CreateEnemy.Instance.SetTimer(waveSriptableObj[currentWave].timeToSpawnTanky);
-            }
-            spawnEnabled = true;
+            currentEnemy++;
+            currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
         }
-
-        if ( enemyTypeNum == 0 && enemiesSmall > 0 && spawnEnabled)
+        else
         {
-            enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[enemyTypeNum];
-            enemiesSmall--;
+            selectedEn = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyPrefab;
         }
-        else if ( enemyTypeNum == 1 && enemiesMedium > 0 && spawnEnabled)
-        {
-            enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[enemyTypeNum];
-            enemiesMedium--;
-        }
-        else if (enemyTypeNum == 2 && enemiesTanky > 0 && spawnEnabled)
-        {
-            enemyToSpawn = waveSriptableObj[currentWave].enemiesInWave[enemyTypeNum];
-            enemiesTanky--;
-        }
-        else if (enemiesSmall <= 0 || enemiesMedium <= 0 || enemiesTanky <= 0)
-        {
-            enemyToSpawn = null;
-            spawnEnabled = false;
-        }
-        else if (enemiesSmall <= 0 && enemiesMedium <= 0 && enemiesTanky <= 0)
-        {
-            noEnemiesLeftToSpawn = true;
-        }
-
-
-            return enemyToSpawn;
-        //return waveSriptableObj[currentWave].enemiesInWave[rnd];
+        return selectedEn;
     }
 
+    public float GetTimeToSpawnEnemy()
+    {
+        return waveSriptableObj[currentWave].enemiesInWave[currentEnemy].timeToSpawn;
+    }
     public bool GetIsWaveStarted()
     {
         return isWaveStarted;
@@ -162,9 +129,5 @@ public class WaveManager : MonoBehaviour
     public int GetAmountOfWaves()
     {
         return waveSriptableObj.Count;
-    }
-    public bool isNoEnemiesLeftToSpawn()
-    {
-        return noEnemiesLeftToSpawn;
     }
 }

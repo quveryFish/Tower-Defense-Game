@@ -3283,6 +3283,8 @@ MonoBehaviour:
   - {fileID: 963080079}
   currentTW: {fileID: 0}
   cam: {fileID: 330585545}
+  rightPanelStats: {fileID: 2031559301}
+  leftPanelStats: {fileID: 617276927}
 --- !u!1 &380549199
 GameObject:
   m_ObjectHideFlags: 0
@@ -13229,6 +13231,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 9826b39c609cda143b32031b5e3d73db, type: 2}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: eff28eafead37ec49894d7a8e8b00b1e, type: 2}
+    - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
+      propertyPath: 'waveSriptableObj.Array.data[9]'
       value: 
       objectReference: {fileID: 11400000, guid: eff28eafead37ec49894d7a8e8b00b1e, type: 2}
     - target: {fileID: 790683036975907392, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}

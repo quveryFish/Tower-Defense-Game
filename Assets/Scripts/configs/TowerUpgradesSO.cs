@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Tower1Upg 1", menuName = "Scriptable Objects/TowerUpgrades")]
-public class TowerUpgrades : ScriptableObject
+public class TowerUpgradesSO : ScriptableObject
 {
     public int upgCost;
     public int damage;

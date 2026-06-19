@@ -13,7 +13,6 @@ public class CreateEnemy : MonoBehaviour
     private WaveManager waveManager;
     private GameObject enemySelected;
 
-    private float timeToSpawn = 0.7f;
     private float spawnTimer;
 
     private void Start()
@@ -27,13 +26,17 @@ public class CreateEnemy : MonoBehaviour
         {
             spawnTimer -= Time.deltaTime;
 
-            if (spawnTimer <= 0 && !waveManager.isNoEnemiesLeftToSpawn())
+            if (spawnTimer <= 0 )
             {
                 enemySelected = waveManager.SelectEnemy();
-                if (enemySelected != null)
+                if (enemySelected != null && waveManager.currentEnemiesLast > 0)
+                {
                     SpawnEnemy();
+                    waveManager.currentEnemiesLast--;
+                    SetTimer(waveManager.GetTimeToSpawnEnemy());
+                //Debug.Log($"Enemies left to spawn: {waveManager.currentEnemiesLast}");
+                }
                 //Debug.Log($"Enemies left to spawn: {waveManager.enemiesLast}");
-                spawnTimer = timeToSpawn;
             }
         }
 
@@ -53,13 +56,13 @@ public class CreateEnemy : MonoBehaviour
             enemiesRemainsAlive.Remove(enemy);
         }
     }
-    public int GetEnemiesRemainsCount()
+    private void SetTimer(float timeToSet)
     {
-        return enemiesRemainsAlive.Count;
+        spawnTimer = timeToSet;
     }
-    public void SetTimer(float timeToSet)
+    public List<GameObject> GetEnemiesRemainsAlive()
     {
-        timeToSpawn = timeToSet;
+        return enemiesRemainsAlive;
     }
 
     private void Awake()
