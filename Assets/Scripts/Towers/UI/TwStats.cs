@@ -28,12 +28,12 @@ public class TwStats : MonoBehaviour
         }
         else
         {
-            if (currentTWinfo.level - 1 < currentTWinfo.towerUpgradesList.Count)
+            if (currentTWinfo.level - 1 < currentTWinfo.towerUpgradesList.Count - 1)
             {
                 CheckStat();
-                SetNewCurrentText();
             }
             CheckCanSeeHidden();
+            SetNewCurrentText();
         }
         
     }
@@ -47,31 +47,31 @@ public class TwStats : MonoBehaviour
     }
     private void CheckStat()
     {
-        if (upgrade.damage != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].damage)
+        if (upgrade.damage != currentTWinfo.towerUpgradesList[currentTWinfo.level].damage)
         {
             arrows[0].SetActive(true);
             upgStatText[0].SetActive(true);
             upgStatText[0].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].damage}";
         }
-        if (upgrade.range != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].range)
+        if (upgrade.range != currentTWinfo.towerUpgradesList[currentTWinfo.level].range)
         {
             arrows[1].SetActive(true);
             upgStatText[1].SetActive(true);
             upgStatText[1].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].range}";
         }
-        if (upgrade.attackSpeed != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].attackSpeed)
+        if (upgrade.attackSpeed != currentTWinfo.towerUpgradesList[currentTWinfo.level].attackSpeed)
         {
             arrows[2].SetActive(true);
             upgStatText[2].SetActive(true);
             upgStatText[2].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].attackSpeed}";
         }
-        if (upgrade.projSpeed != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].projSpeed)
+        if (upgrade.projSpeed != currentTWinfo.towerUpgradesList[currentTWinfo.level].projSpeed)
         {
             arrows[3].SetActive(true);
             upgStatText[3].SetActive(true);
             upgStatText[3].GetComponent<Text>().text = $"{currentTWinfo.towerUpgradesList[currentTWinfo.level].projSpeed}";
         }
-        if (upgrade.penetration != currentTWinfo.towerUpgradesList[currentTWinfo.level - 1].penetration)
+        if (upgrade.penetration != currentTWinfo.towerUpgradesList[currentTWinfo.level].penetration)
         {
             arrows[4].SetActive(true);
             upgStatText[4].SetActive(true);
