@@ -2099,7 +2099,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3276069776035908735}
@@ -2147,7 +2147,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 1.6, z: 1.6}
+  m_Size: {x: 1.6, y: 10, z: 1.6}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &7539863745186466601
 Rigidbody:
@@ -2202,10 +2202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b6d976ca9055545a6915323fa57c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 50
   moneyValue: 30
   isHiden: 0
-  enemyType: 2
 --- !u!114 &-3451698905089330847
 MonoBehaviour:
   m_ObjectHideFlags: 0

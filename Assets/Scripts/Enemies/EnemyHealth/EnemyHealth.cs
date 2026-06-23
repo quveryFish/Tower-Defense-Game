@@ -5,7 +5,6 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int health = 10;
     [SerializeField] private int moneyValue = 5;
     [SerializeField] private bool isHiden = false;
-    [SerializeField] private EnemyType enemyType;
 
     private SkinnedMeshRenderer[] renderers;
 
@@ -52,19 +51,8 @@ public class EnemyHealth : MonoBehaviour
     {
         return health;
     }
-
-    public EnemyType GetEnemyType()
-    {
-        return enemyType;
-    }
     public bool GetIsHiden()
     {
         return isHiden;
     }
-}
-public enum EnemyType
-{
-    Small,
-    Medium,
-    Tanky
 }

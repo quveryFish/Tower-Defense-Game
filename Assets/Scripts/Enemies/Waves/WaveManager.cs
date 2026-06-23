@@ -48,7 +48,7 @@ public class WaveManager : MonoBehaviour
             isWaveStarted = true;//Починаєм гру
 
             currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
-            Debug.Log("Wave Started");
+            Debug.Log($"Wave {currentWave} started.");
         }
     }
     private void EndOfWave()
@@ -88,7 +88,9 @@ public class WaveManager : MonoBehaviour
             timeBetweenWaves -= Time.deltaTime;
             if (timeBetweenWaves <= 0 && currentWave <= waveSriptableObj.Count)
             {
+                
                 isWaveStarted = true;
+                Debug.Log($"Wave {currentWave} started.");
                 currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
                 //currentEnemy = 0;
             }
@@ -98,7 +100,7 @@ public class WaveManager : MonoBehaviour
     public GameObject SelectEnemy()
     {
         GameObject selectedEn = null;
-        if (currentEnemiesLast <= 0 && currentEnemy < waveSriptableObj[currentWave].enemiesInWave.Count - 1)
+        if (currentEnemiesLast <= 0 && currentEnemy + 1 < waveSriptableObj[currentWave].enemiesInWave.Count)
         {
             currentEnemy++;
             currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;

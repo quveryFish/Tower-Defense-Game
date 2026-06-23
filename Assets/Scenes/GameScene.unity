@@ -8456,7 +8456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BankManager
   moneyText: {fileID: 1451241912}
-  money: 7500
+  money: 75
 --- !u!4 &1157071116
 Transform:
   m_ObjectHideFlags: 0
@@ -13195,7 +13195,7 @@ PrefabInstance:
       objectReference: {fileID: 1995167122}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: waveSriptableObj.Array.size
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[0]'
@@ -13236,7 +13236,11 @@ PrefabInstance:
     - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: 'waveSriptableObj.Array.data[9]'
       value: 
-      objectReference: {fileID: 11400000, guid: eff28eafead37ec49894d7a8e8b00b1e, type: 2}
+      objectReference: {fileID: 11400000, guid: e23f838f78b1fde48881aa4a14f2c79c, type: 2}
+    - target: {fileID: 173161342666743434, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
+      propertyPath: 'waveSriptableObj.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f9d15f8cb50a5dc489700823519c3e2a, type: 2}
     - target: {fileID: 790683036975907392, guid: c5e7bcb1a392dee4ba596e8804a2d893, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
