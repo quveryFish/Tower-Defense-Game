@@ -6,7 +6,7 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] private List<WaveSriptableObjScript> waveSriptableObj;
     [SerializeField] private Text waveTimeText;
-    private float timeBetweenWaves = 0;
+    private float timeBetweenWaves = 15;
     public int currentWave = 0;
 
     public int currentEnemiesLast;
@@ -27,6 +27,7 @@ public class WaveManager : MonoBehaviour
         WaveFirstStart();
 
         //timer text between waves
+        timeBetweenWaves -= Time.deltaTime;
         if (timeBetweenWaves > 0)
         {
             waveTimeText.text = $"Next wave in {timeBetweenWaves.ToString("F1")} seconds.";
@@ -86,7 +87,6 @@ public class WaveManager : MonoBehaviour
         }
         else if (isWaveStarted == false && isWaveCompleted == true)
         {
-            timeBetweenWaves -= Time.deltaTime;
             if (timeBetweenWaves <= 0 && currentWave <= waveSriptableObj.Count)
             {
                 

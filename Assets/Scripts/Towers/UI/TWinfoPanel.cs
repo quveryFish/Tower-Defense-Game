@@ -163,12 +163,18 @@ public class TWinfoPanel : MonoBehaviour
             )
         {
             //Upgrade TW
-            if (currentTW.GetComponent<TWinfo>().level >= currentTW.GetComponent<TWinfo>().towerUpgradesList.Count)
+            if (currentTW.GetComponent<TWinfo>().level <= currentTW.GetComponent<TWinfo>().towerUpgradesList.Count)
             {
-                Debug.Log("Max level reached");
+                currentTW.GetComponent<PlaySound>().StopSound();
+                currentTW.GetComponent<PlaySound>().PlayRandomSound();
 
+            }
+            else
+            {
+                Debug.Log("Max Level Reached");
                 return;
             }
+            
             currentTW.GetComponent<TWinfo>().level += 1;
             BankManager.Instance.SubtractMoney(currentUpgPrice);
             currentTW.GetComponent<TWinfo>().Upgrade();

@@ -17,5 +17,8 @@ MonoBehaviour:
   attackSpeed: 0.8
   range: 10
   canSeeHiden: 0
-  projSpeed: 10
-  penetration: 4
+  projSpeed: 15
+  penetration: 3
+  spawnSpeed: 0
+  spawnHealth: 0
+  spawnedWalkSpeed: 0

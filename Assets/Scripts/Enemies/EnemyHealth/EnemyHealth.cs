@@ -7,12 +7,14 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private bool isHiden = false;
 
     private SkinnedMeshRenderer[] renderers;
+    private PlaySound playSound;
 
     private float redTimer = 0.1f;
     private float timer;
     private void Start()
     {
         renderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+        playSound = gameObject.GetComponent<PlaySound>();
         timer = redTimer;
     }
     private void Update()
@@ -34,14 +36,20 @@ public class EnemyHealth : MonoBehaviour
             r.material.color = Color.orange;
         }
         timer = redTimer;
-        
-        
+
         if (health <= 0)
         {
+            playSound.DeathSound();
+
             BankManager.Instance.AddMoney(moneyValue);
             CreateEnemy.Instance.RemoveEnemy(gameObject);
             Destroy(gameObject);
         }
+        else
+        {
+            playSound.PlayRandomSound();
+        }
+
     }
     public void Heal(int healAmount)
     {

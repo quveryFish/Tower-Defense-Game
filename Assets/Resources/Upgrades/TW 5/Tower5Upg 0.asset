@@ -20,5 +20,5 @@ MonoBehaviour:
   projSpeed: 0
   penetration: 0
   spawnSpeed: 30
-  spawnHealth: 20
-  spawnedWalkSpeed: 2
+  spawnHealth: 15
+  spawnedWalkSpeed: 1

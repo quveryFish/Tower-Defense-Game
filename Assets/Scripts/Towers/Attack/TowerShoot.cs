@@ -9,7 +9,6 @@ public class TowerShoot : MonoBehaviour
     [SerializeField] private float attackMaxCooldown = 1f;
     [SerializeField] private float bulletSpeed = 7f;
     [SerializeField] private int damage = 1;
-    [Header("Upgrades")]
     [SerializeField] private int penetration = 1;
 
     private void Start()
@@ -29,6 +28,8 @@ public class TowerShoot : MonoBehaviour
     private void Shoot()
     {
         attackCooldown = attackMaxCooldown;
+
+        gameObject.GetComponent<PlaySound>().PlaySpecificSound();//Sound
 
         gameObject.GetComponent<TowerAnimations>().PlayAttackAnimation();//Animation
 

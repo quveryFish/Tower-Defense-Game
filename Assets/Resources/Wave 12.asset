@@ -16,4 +16,4 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 6978866270486532218, guid: 4f6282cf3e8994842a8b12114daa6383, type: 3}
     timeToSpawn: 0.5
     enemyCount: 10
-  endWaveMoneyReward: 100
+  endWaveMoneyReward: 50

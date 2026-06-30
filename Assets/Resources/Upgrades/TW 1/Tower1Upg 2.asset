@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Tower1Upg 2
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrades
   upgCost: 100
-  damage: 3
+  damage: 2
   attackSpeed: 0.5
   range: 7
   canSeeHiden: 0
   projSpeed: 20
-  penetration: 2
+  penetration: 1
+  spawnSpeed: 0
+  spawnHealth: 0
+  spawnedWalkSpeed: 0

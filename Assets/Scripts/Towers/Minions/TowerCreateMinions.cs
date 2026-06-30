@@ -13,7 +13,7 @@ public class TowerCreateMinions : MonoBehaviour
 
     private void Start()
     {
-        timer = timeToCreateMinion / 2 ;
+        timer = timeToCreateMinion / 5 ;
         checkpointsOnMap = CreateEnemy.Instance.GetCheckpoints();
     }
     private void Update()

@@ -15,6 +15,10 @@ MonoBehaviour:
   upgCost: 200
   damage: 3
   attackSpeed: 0.5
-  range: 14
+  range: 9
+  canSeeHiden: 0
   projSpeed: 20
   penetration: 2
+  spawnSpeed: 0
+  spawnHealth: 0
+  spawnedWalkSpeed: 0

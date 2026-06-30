@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5219c5930ac931d47a61a5055def2957, type: 3}
   m_Name: Tower5Upg 1
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgradesSO
-  upgCost: 55
+  upgCost: 75
   damage: 0
   attackSpeed: 0
   range: 0
@@ -20,5 +20,5 @@ MonoBehaviour:
   projSpeed: 0
   penetration: 0
   spawnSpeed: 25
-  spawnHealth: 30
-  spawnedWalkSpeed: 2
+  spawnHealth: 25
+  spawnedWalkSpeed: 1

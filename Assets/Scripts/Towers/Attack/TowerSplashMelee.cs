@@ -29,6 +29,8 @@ public class TowerSplashMelee : MonoBehaviour
     {
         attackCooldown = attackMaxCooldown;
 
+        gameObject.GetComponent<PlaySound>().PlaySpecificSound();
+
         gameObject.GetComponent<TowerAnimations>().PlayAttackAnimation();
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);

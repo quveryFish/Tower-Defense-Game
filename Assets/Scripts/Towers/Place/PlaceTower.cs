@@ -107,6 +107,8 @@ public class PlaceTower : MonoBehaviour
         isButtonPressed = false;
         placedTowerList.Add(currentTow);
 
+        currentTow.GetComponent<PlaySound>().PlayRandomSound();
+
         SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (SkinnedMeshRenderer r in renderers)
         {
