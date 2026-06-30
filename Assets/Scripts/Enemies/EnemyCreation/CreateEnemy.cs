@@ -64,6 +64,10 @@ public class CreateEnemy : MonoBehaviour
     {
         return enemiesRemainsAlive;
     }
+    public List<Transform> GetCheckpoints()
+    {
+        return checkpoints;
+    }
 
     private void Awake()
     {

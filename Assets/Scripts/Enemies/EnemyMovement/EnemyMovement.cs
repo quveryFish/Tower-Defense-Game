@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     private List<Transform> checkpointsOnMap;
     private Rigidbody rb;
 
-    private int currentCheckpointIndex = 0;
+    private int currentCheckpointIndex = 1;
 
     private float timeForSlowdownEffect = 4f;
     private float slowdownTimer = 0f;
@@ -77,5 +77,10 @@ public class EnemyMovement : MonoBehaviour
     {
         currentCheckpointIndex = index;
         return currentCheckpointIndex;
+    }
+    public void SetSpeed(float newSpeed)
+    {
+        originalMoveSpeed = newSpeed;
+        moveSpeed = newSpeed;
     }
 }

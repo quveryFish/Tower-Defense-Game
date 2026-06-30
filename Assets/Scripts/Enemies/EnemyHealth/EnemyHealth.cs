@@ -47,6 +47,18 @@ public class EnemyHealth : MonoBehaviour
     {
         health += healAmount;
     }
+    public void SetEnemyHealth(int newHealth)
+    {
+        health = newHealth;
+    }
+    public void SetMoneyValue(int newValue)
+    {
+        moneyValue = newValue;
+    }
+    public void SetIsHiden(bool newValue)
+    {
+        isHiden = newValue;
+    }
     public int GetEnemyHealth()
     {
         return health;

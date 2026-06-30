@@ -67,6 +67,7 @@ public class WaveManager : MonoBehaviour
                 isWaveStarted = false;
                 isWaveCompleted = true;
                 timeBetweenWaves = 6.7f;
+                currentEnemy = 0;
                 //Debug.Log($"Wave {currentWave} completed. Next wave will start in {timeBetweenWaves} seconds.");
 
             }
@@ -100,7 +101,7 @@ public class WaveManager : MonoBehaviour
     public GameObject SelectEnemy()
     {
         GameObject selectedEn = null;
-        if (currentEnemiesLast <= 0 && currentEnemy + 1 < waveSriptableObj[currentWave].enemiesInWave.Count)
+        if (currentEnemiesLast <= 0 && currentEnemy < waveSriptableObj[currentWave].enemiesInWave.Count - 1)
         {
             currentEnemy++;
             currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
@@ -108,6 +109,7 @@ public class WaveManager : MonoBehaviour
         else
         {
             selectedEn = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyPrefab;
+            
         }
         return selectedEn;
     }

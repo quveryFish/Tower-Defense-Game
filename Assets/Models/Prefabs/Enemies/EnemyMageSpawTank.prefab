@@ -2075,6 +2075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1147192112374201628}
+  - component: {fileID: -3051082214830249688}
   - component: {fileID: 5986633702997235061}
   - component: {fileID: 4075777330507006414}
   - component: {fileID: 7539863745186466601}
@@ -2106,6 +2107,21 @@ Transform:
   - {fileID: 2828107170452764677}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3051082214830249688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6978866270486532218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6255815db612045b7b9c91ccd360b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetEnemyStats
+  enemyStatsList:
+  - {fileID: 11400000, guid: fbb5f362263f145438a2c4d2c238d914, type: 2}
+  level: 0
 --- !u!95 &5986633702997235061
 Animator:
   serializedVersion: 7

@@ -13,4 +13,9 @@ public class EnemyDealDamageToBase : MonoBehaviour
             gameObject.GetComponent<EnemyHealth>().TakeDamage(GetComponent<EnemyHealth>().GetEnemyHealth());
         }
     }
+
+    public void SetDamageAmount(int damage)
+    {
+        damageAmount = damage;
+    }
 }
