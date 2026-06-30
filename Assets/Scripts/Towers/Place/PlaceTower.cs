@@ -84,8 +84,14 @@ public class PlaceTower : MonoBehaviour
 
         currentTow = Instantiate(towers[currentIndex], hit.point, Quaternion.identity, this.gameObject.transform);
         currentTow.transform.rotation = Quaternion.Euler(0, 180, 0);
-        currentMat = currentTow.GetComponentInChildren<SkinnedMeshRenderer>().material;
-
+        if (currentTow.GetComponentInChildren<SkinnedMeshRenderer>() != null)
+        {
+            currentMat = currentTow.GetComponentInChildren<SkinnedMeshRenderer>().material;
+        }
+        else
+        {
+            currentMat = currentTow.GetComponentInChildren<MeshRenderer>().material;
+        }
         BoolScriptsEnable(false);
         currentTow.GetComponent<TWinfo>().price = currentTWcost;
 

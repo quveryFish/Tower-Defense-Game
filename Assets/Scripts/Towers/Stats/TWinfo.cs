@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TWinfo : MonoBehaviour
 {
-    //[SerializeField] private TowerUpgrades startingStats;
+    public TowerType twType;
     public List<TowerUpgradesSO> towerUpgradesList;
     public int level = 0;
     public Sprite towerImage;
@@ -16,14 +16,30 @@ public class TWinfo : MonoBehaviour
     }
     public void Upgrade()
     {
-        SetDamageUpgrades();
-        SetRangeUpgrades();
-        SetAttackSpeed();
-        SetCanSeeHiden();
-        //RangeOnlyUpgrades();
-        SetProjSpeed();
-        SetPenetration();
-        price += towerUpgradesList[level - 1].upgCost;
+        if (twType == TowerType.Shoot)
+        {
+            SetDamageUpgrades();
+            SetRangeUpgrades();
+            SetAttackSpeed();
+            SetCanSeeHiden();
+            //
+            SetProjSpeed();
+            SetPenetration();
+        }
+        else if (twType == TowerType.SplashMelee)
+        {
+            SetDamageUpgrades();
+            SetRangeUpgrades();
+            SetAttackSpeed();
+            SetCanSeeHiden();
+        }
+        else if (twType == TowerType.Spawner)
+        {
+            SetSpawnSpeed();
+            SetSpawnHealth();
+            SetSpawnWalkSpeed();
+        }
+            price += towerUpgradesList[level - 1].upgCost;
     }
 
     private void SetStarterStat()
@@ -113,4 +129,32 @@ public class TWinfo : MonoBehaviour
             gameObject.GetComponent<TowerShoot>().SetPenetration(towerUpgradesList[level - 1].penetration);
         }
     }
+
+    private void SetSpawnSpeed()
+    {
+        if (gameObject.GetComponent<TowerCreateMinions>() != null)
+        {
+            gameObject.GetComponent<TowerCreateMinions>().SetSpawnSpeed(towerUpgradesList[level - 1].spawnSpeed);
+        }   
+    }
+    private void SetSpawnHealth()
+    {
+        if (gameObject.GetComponent<TowerCreateMinions>() != null)
+        {
+            gameObject.GetComponent<TowerCreateMinions>().SetSpawnHealth(towerUpgradesList[level - 1].spawnHealth);
+        }
+    }
+    public void SetSpawnWalkSpeed()
+    {
+        if (gameObject.GetComponent<TowerCreateMinions>() != null)
+        {
+            gameObject.GetComponent<TowerCreateMinions>().SetMoveSpeed(towerUpgradesList[level - 1].spawnedWalkSpeed);
+        }
+    }
+}
+public enum TowerType
+{
+    Shoot,
+    SplashMelee,
+    Spawner
 }

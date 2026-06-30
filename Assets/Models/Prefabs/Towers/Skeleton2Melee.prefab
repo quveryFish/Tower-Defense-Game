@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7593d39d102fa04195c34dcd003f25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TWinfo
+  twType: 1
   towerUpgradesList:
   - {fileID: 11400000, guid: 1d496110b4baa7943b69c2c0f185c79e, type: 2}
   - {fileID: 11400000, guid: 5bf1d145b1ca9224197a79698ba74149, type: 2}
@@ -328,6 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ecb2611105953e409afe73bb2329f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeOnPlaceble
+  areaRangeNum: 5
+  needRange: 1
   rangePrefab: {fileID: 1777703875836216584, guid: 1ddab9c9a114bce4e87966dfea1a5f56, type: 3}
   placebleRangePrefab: {fileID: 1777703875836216584, guid: 05c566e585537cb44bc579b118955072, type: 3}
 --- !u!114 &8627691445171955236

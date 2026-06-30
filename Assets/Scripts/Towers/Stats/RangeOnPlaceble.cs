@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class RangeOnPlaceble : MonoBehaviour
 {
+    [SerializeField]private float areaRangeNum = 5;
+    [SerializeField]private bool needRange = true;
     private bool canBePlaceble;
     private float rangeNum;
-    private float areaRangeNum = 5;
     private SkinnedMeshRenderer[] renderers;
     private bool isUpgradable;
 
@@ -21,7 +22,10 @@ public class RangeOnPlaceble : MonoBehaviour
         renderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
         isUpgradable = false;
         canBePlaceble = PlaceTower.Instance.GetCanBePlacable();
-        rangeNum = this.gameObject.GetComponent<TowerRotateToEnemy>().GetRange();
+        if (needRange == true)
+        {
+            rangeNum = this.gameObject.GetComponent<TowerRotateToEnemy>().GetRange();
+        }
         
     }
     private void Update()
@@ -30,7 +34,10 @@ public class RangeOnPlaceble : MonoBehaviour
         {
             if (range == null)
             {
-                CreateShootingRange();
+                if (needRange == true)
+                {
+                    CreateShootingRange();
+                }
 
                 CreateLimitingRange();
 
@@ -103,7 +110,7 @@ public class RangeOnPlaceble : MonoBehaviour
     private void CreateLimitingRange()
     {
         placebleRange = Instantiate(placebleRangePrefab, transform.position + new Vector3(0,0.1f,0), Quaternion.identity, this.gameObject.transform);
-        placebleRange.transform.localScale = new Vector3(areaRangeNum / 2.5f, 0.2f, areaRangeNum / 2.5f);
+        placebleRange.transform.localScale = new Vector3(areaRangeNum / 2.5f, 0.2f, areaRangeNum / 2.5f); 
         placebleRange.name = "PlacebleRange";
         placebleRange.SetActive(false);
     }
@@ -121,7 +128,10 @@ public class RangeOnPlaceble : MonoBehaviour
     }
     public void ShowShootRange(bool isEnabled)
     {
-        range.SetActive(isEnabled);
+        if (range != null)
+        {
+            range.SetActive(isEnabled);
+        }
     }
     public bool GetCanPlace()
     {
