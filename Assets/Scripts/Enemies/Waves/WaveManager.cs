@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField] private GameObject endUI;
     [SerializeField] private List<WaveSriptableObjScript> waveSriptableObj;
     [SerializeField] private Text waveTimeText;
     private float timeBetweenWaves;
@@ -54,17 +55,18 @@ public class WaveManager : MonoBehaviour
     }
     private void EndOfWave()
     {
-        if (currentEnemy == waveSriptableObj[currentWave].enemiesInWave.Count - 1 && currentEnemiesLast <= 0
+        if (currentEnemy == waveSriptableObj[currentWave].enemiesInWave.Count - 1
+            && currentEnemiesLast <= 0
             && isWaveStarted == true
             && CreateEnemy.Instance.GetEnemiesRemainsAlive().Count == 0)
         {
             //End of wave
 
-            if (currentWave <= waveSriptableObj.Count)
+            if (currentWave < waveSriptableObj.Count - 1)
             {
                 BankManager.Instance.AddMoney(waveSriptableObj[currentWave].endWaveMoneyReward);
                 currentWave++;
-                if (currentWave == 5 || currentWave == 6 || currentWave == 9)
+                if (currentWave == 4 || currentWave == 7 || currentWave == 9)
                 {
                     gameObject.GetComponent<TutorialScript>().ShowMessage();
                 }
@@ -75,9 +77,15 @@ public class WaveManager : MonoBehaviour
                 //Debug.Log($"Wave {currentWave} completed. Next wave will start in {timeBetweenWaves} seconds.");
 
             }
-            else
+            else if (currentWave == waveSriptableObj.Count - 1
+                && currentEnemiesLast <= 0
+                && CreateEnemy.Instance.GetEnemiesRemainsAlive().Count == 0)
             {
-                Debug.Log("All waves completed! You win!");
+                if (endUI.activeSelf == false)
+                {
+                    Debug.Log("All waves completed! You win!");
+                    endUI.SetActive(true);
+                }
             }
         }
     }

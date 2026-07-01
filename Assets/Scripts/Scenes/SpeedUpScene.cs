@@ -9,7 +9,7 @@ public class SpeedUpScene : MonoBehaviour
     {
         if (Time.timeScale == 1f)
         {
-            Time.timeScale = 2f;
+            Time.timeScale = 5f;
             gameObject.GetComponent<Image>().color = Color.lightGray;
         }
         else
