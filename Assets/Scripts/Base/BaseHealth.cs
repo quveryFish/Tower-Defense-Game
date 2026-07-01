@@ -5,7 +5,7 @@ public class BaseHealth : MonoBehaviour
 {
     [SerializeField] private Text healthText;
     [SerializeField] private Image healthBarFill;
-    private int health = 100;
+    [SerializeField] private int health = 100;
     private int maxHealth = 250;
     private void Start()
     {

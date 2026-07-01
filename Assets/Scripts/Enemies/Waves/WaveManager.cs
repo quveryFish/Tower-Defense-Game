@@ -6,7 +6,7 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] private List<WaveSriptableObjScript> waveSriptableObj;
     [SerializeField] private Text waveTimeText;
-    private float timeBetweenWaves = 15;
+    private float timeBetweenWaves;
     public int currentWave = 0;
 
     public int currentEnemiesLast;
@@ -47,7 +47,7 @@ public class WaveManager : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Space) && GetIsWaveStarted() == false))
         {
             isWaveStarted = true;//Починаєм гру
-
+            gameObject.GetComponent<TutorialScript>().DissableMessege();
             currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
             Debug.Log($"Wave {currentWave} started.");
         }
@@ -64,7 +64,10 @@ public class WaveManager : MonoBehaviour
             {
                 BankManager.Instance.AddMoney(waveSriptableObj[currentWave].endWaveMoneyReward);
                 currentWave++;
-
+                if (currentWave == 5 || currentWave == 6 || currentWave == 9)
+                {
+                    gameObject.GetComponent<TutorialScript>().ShowMessage();
+                }
                 isWaveStarted = false;
                 isWaveCompleted = true;
                 timeBetweenWaves = 6.7f;

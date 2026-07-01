@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: Wave 2
   m_EditorClassIdentifier: Assembly-CSharp::WaveSriptableObjScript
   enemiesInWave:
-  - enemyPrefab: {fileID: 3985318870339692013, guid: c818fd292545048449413bb9945c085e, type: 3}
+  - enemyPrefab: {fileID: 1089566171208371422, guid: 845ac62a28f85a5459a9ea010c3b2d2e, type: 3}
     timeToSpawn: 1.2
     enemyCount: 5
-  - enemyPrefab: {fileID: 1089566171208371422, guid: 845ac62a28f85a5459a9ea010c3b2d2e, type: 3}
-    timeToSpawn: 0.6
-    enemyCount: 10
   endWaveMoneyReward: 50

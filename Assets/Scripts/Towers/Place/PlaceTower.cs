@@ -6,14 +6,18 @@ public class PlaceTower : MonoBehaviour
 {
     public static PlaceTower Instance;
 
+    [Header("Tower Placement Settings")]
     [SerializeField] private LayerMask ground;
     [SerializeField] private GameObject mapLimiter;
-
+    [Header("Tower Settings")]
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject[] towers;
-
+    [Header("Placed Tower List")]
     [SerializeField] private List<GameObject> placedTowerList = new List<GameObject>();
     [SerializeField] private GameObject currentTow;
+
+    private AudioSource NoMoneySound;
+
     private int currentIndex = 0;
     private Material currentMat;
 
@@ -38,6 +42,7 @@ public class PlaceTower : MonoBehaviour
 
         OnShowTower += ShowTW;
 
+        NoMoneySound = gameObject.GetComponent<AudioSource>();
 
         CancelPlaceTW();
     }
@@ -75,15 +80,33 @@ public class PlaceTower : MonoBehaviour
         if (BankManager.Instance.CanAfford() == false)
         {
             Debug.Log("Can't afford tower!");
+            NoMoneySound.Stop();
+            NoMoneySound.Play();
             isButtonPressed = false;
             return;
         }
 
         CancelPlaceTW();
         EnableAllTriggerRanges(true);
-
         currentTow = Instantiate(towers[currentIndex], hit.point, Quaternion.identity, this.gameObject.transform);
         currentTow.transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        if (currentTow.GetComponent<TowerShoot>() != null)
+        {
+            currentTow.GetComponent<TowerShoot>().enabled = false;
+            currentTow.GetComponent<TowerRotateToEnemy>().enabled = false;
+        }
+        else if (currentTow.GetComponent<TowerSplashMelee>() != null)
+        {
+            currentTow.GetComponent<TowerSplashMelee>().enabled = false;
+            currentTow.GetComponent<TowerRotateToEnemy>().enabled = false;
+        }
+        else if (currentTow.GetComponent<TowerCreateMinions>() != null)
+        {
+            currentTow.GetComponent<TowerCreateMinions>().enabled = false;
+        }
+
+
         if (currentTow.GetComponentInChildren<SkinnedMeshRenderer>() != null)
         {
             currentMat = currentTow.GetComponentInChildren<SkinnedMeshRenderer>().material;
@@ -108,6 +131,23 @@ public class PlaceTower : MonoBehaviour
         placedTowerList.Add(currentTow);
 
         currentTow.GetComponent<PlaySound>().PlayRandomSound();
+
+
+        if (currentTow.GetComponent<TowerShoot>() != null)
+        {
+            currentTow.GetComponent<TowerShoot>().enabled = true;
+            currentTow.GetComponent<TowerRotateToEnemy>().enabled = true;
+        }
+        else if (currentTow.GetComponent<TowerSplashMelee>() != null)
+        {
+            currentTow.GetComponent<TowerSplashMelee>().enabled = true;
+            currentTow.GetComponent<TowerRotateToEnemy>().enabled = true;
+        }
+        else if (currentTow.GetComponent<TowerCreateMinions>() != null)
+        {
+            currentTow.GetComponent<TowerCreateMinions>().enabled = true;
+        }
+
 
         SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (SkinnedMeshRenderer r in renderers)

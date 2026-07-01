@@ -15,7 +15,7 @@ MonoBehaviour:
   enemiesInWave:
   - enemyPrefab: {fileID: 3985318870339692013, guid: c818fd292545048449413bb9945c085e, type: 3}
     timeToSpawn: 1.2
-    enemyCount: 6
+    enemyCount: 3
   - enemyPrefab: {fileID: 3985318870339692013, guid: 3a22f3332e02844409156cd4c987fce7, type: 3}
     timeToSpawn: 2
     enemyCount: 3
