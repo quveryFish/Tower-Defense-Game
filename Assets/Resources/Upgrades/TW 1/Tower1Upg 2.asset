@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrades
   upgCost: 100
   damage: 2
-  attackSpeed: 0.5
+  attackSpeed: 0.7
   range: 7
   canSeeHiden: 0
-  projSpeed: 20
+  projSpeed: 12
   penetration: 1
   spawnSpeed: 0
   spawnHealth: 0

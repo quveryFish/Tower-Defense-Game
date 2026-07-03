@@ -33,7 +33,9 @@ public class TWinfoPanel : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, 100))
             {
                 //Show Panel
-                if (hit.collider.gameObject.GetComponent<TWinfo>() != null)
+                if (hit.collider.gameObject.GetComponent<TWinfo>() != null
+                    && (hit.collider.gameObject.GetComponent<TowerRotateToEnemy>()?.enabled == true
+                    || hit.collider.gameObject.GetComponent<TowerCreateMinions>()?.enabled == true))
                 {
                     currentTW = hit.collider.gameObject;
 

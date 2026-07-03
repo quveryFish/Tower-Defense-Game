@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaceTower : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlaceTower : MonoBehaviour
     [Header("Tower Settings")]
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject[] towers;
+    [SerializeField] private List<int> towerCosts;
+    [SerializeField] private List<Text> towerCostText;
     [Header("Placed Tower List")]
     [SerializeField] private List<GameObject> placedTowerList = new List<GameObject>();
     [SerializeField] private GameObject currentTow;
@@ -38,10 +41,13 @@ public class PlaceTower : MonoBehaviour
     private void Start()
     {
         OnPlaceTower += PlaceTW;
-        OnPlaceTower += () => BankManager.Instance.SubtractMoney(currentTWcost);
 
         OnShowTower += ShowTW;
 
+        for (int i = 0; i < towerCostText.Count; i++)
+        {
+            towerCostText[i].text = "$" + towerCosts[i].ToString();
+        }
         NoMoneySound = gameObject.GetComponent<AudioSource>();
 
         CancelPlaceTW();
@@ -59,7 +65,8 @@ public class PlaceTower : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse0) && canBePlacable && currentTow.GetComponent<RangeOnPlaceble>().GetCanPlace())
         {
-            ButtonClickToTrue(currentTWcost);
+            ButtonClickToTrue();
+
             OnPlaceTower?.Invoke();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1) && canBePlacable)
@@ -76,15 +83,6 @@ public class PlaceTower : MonoBehaviour
     
     private void ShowTW()
     {
-        BankManager.Instance.CheckIsEnough(currentTWcost);
-        if (BankManager.Instance.CanAfford() == false)
-        {
-            Debug.Log("Can't afford tower!");
-            NoMoneySound.Stop();
-            NoMoneySound.Play();
-            isButtonPressed = false;
-            return;
-        }
 
         CancelPlaceTW();
         EnableAllTriggerRanges(true);
@@ -116,7 +114,7 @@ public class PlaceTower : MonoBehaviour
             currentMat = currentTow.GetComponentInChildren<MeshRenderer>().material;
         }
         BoolScriptsEnable(false);
-        currentTow.GetComponent<TWinfo>().price = currentTWcost;
+
 
 
 
@@ -126,12 +124,22 @@ public class PlaceTower : MonoBehaviour
 
     private void PlaceTW()
     {
+        currentTWcost = towerCosts[currentIndex];
+        currentTow.GetComponent<TWinfo>().price = currentTWcost;
+        BankManager.Instance.CheckIsEnough(currentTWcost);
+        if (BankManager.Instance.CanAfford() == false)
+        {
+            Debug.Log("Can't afford tower!");
+            NoMoneySound.Stop();
+            NoMoneySound.Play();
+            CancelPlaceTW();
+            return;
+        }
         canBePlacable = false;
         isButtonPressed = false;
         placedTowerList.Add(currentTow);
 
         currentTow.GetComponent<PlaySound>().PlayRandomSound();
-
 
         if (currentTow.GetComponent<TowerShoot>() != null)
         {
@@ -148,6 +156,9 @@ public class PlaceTower : MonoBehaviour
             currentTow.GetComponent<TowerCreateMinions>().enabled = true;
         }
 
+        BankManager.Instance.SubtractMoney(currentTWcost);
+        towerCosts[currentIndex] = currentTWcost * 3;
+        towerCostText[currentIndex].text = "$" + towerCosts[currentIndex].ToString();
 
         SkinnedMeshRenderer[] renderers = currentTow.GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (SkinnedMeshRenderer r in renderers)
@@ -215,14 +226,17 @@ public class PlaceTower : MonoBehaviour
     {
         return canBePlacable;
     }
-    public void ButtonClickToTrue(int twCost)
+    public void ButtonClickToTrue()
     {
-        currentTWcost = twCost;
         isButtonPressed = true;
     }
     public void SetCurrentIndex(int index)
     {
         currentIndex = index;
+    }
+    public List<GameObject> GetPlacedTowerList()
+    {
+        return placedTowerList;
     }
     public void RemoveFromCurrentTWList(GameObject tower)
     {

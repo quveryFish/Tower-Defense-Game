@@ -8,13 +8,17 @@ public class TutorialScript : MonoBehaviour
     [SerializeField] private int currentMessageIndex = 0;
     [SerializeField] private Text messagePanel;
     private float timer;
+    private void Start()
+    {
+        messagePanel.text = "Press space to start a wave\r\nMiddle button to rotate map";
+    }
     private void Update()
     {
         if (timer > 0)
         {
             timer -= Time.deltaTime;
         }
-        else if (timer <= 0 && messagePanel.text != "" && messagePanel.text != "Press space to start a wave")
+        else if (timer <= 0 && messagePanel.text != "" && messagePanel.text != "Press space to start a wave\r\nMiddle button to rotate map")
         {
             DissableMessege();
         }

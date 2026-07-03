@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5219c5930ac931d47a61a5055def2957, type: 3}
   m_Name: Tower2Upg 3
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrades
-  upgCost: 400
+  upgCost: 500
   damage: 10
-  attackSpeed: 0.6
+  attackSpeed: 0.8
   range: 3
   canSeeHiden: 1
   projSpeed: 0
   penetration: 0
+  spawnSpeed: 0
+  spawnHealth: 0
+  spawnedWalkSpeed: 0
