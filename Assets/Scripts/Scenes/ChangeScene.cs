@@ -6,6 +6,7 @@ public class ChangeScene : MonoBehaviour
     public void ChangeToScene(int sceneNum)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneNum);
+        Time.timeScale = 1f;
     }
     public void QuitGame()
     {

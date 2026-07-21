@@ -7,6 +7,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private GameObject endUI;
     [SerializeField] private List<WaveSriptableObjScript> waveSriptableObj;
     [SerializeField] private Text waveTimeText;
+    [SerializeField] private Text waveNumText;
     private float timeBetweenWaves;
     public int currentWave = 0;
 
@@ -51,6 +52,7 @@ public class WaveManager : MonoBehaviour
             gameObject.GetComponent<TutorialScript>().DissableMessege();
             currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
             Debug.Log($"Wave {currentWave} started.");
+            waveNumText.text = $"Wave {currentWave + 1}/{waveSriptableObj.Count}";
         }
     }
     private void EndOfWave()
@@ -103,6 +105,7 @@ public class WaveManager : MonoBehaviour
                 
                 isWaveStarted = true;
                 Debug.Log($"Wave {currentWave} started.");
+                waveNumText.text = $"Wave {currentWave + 1}/{waveSriptableObj.Count}";
                 currentEnemiesLast = waveSriptableObj[currentWave].enemiesInWave[currentEnemy].enemyCount;
                 //currentEnemy = 0;
             }

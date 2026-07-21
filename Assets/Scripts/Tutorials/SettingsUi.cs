@@ -10,6 +10,8 @@ public class SettingsUi : MonoBehaviour
     [SerializeField] private AudioSource musicAudioSource;
     [SerializeField] private GameObject UI;
 
+    private float previousTimeScale = 1f;
+
     public void SetMusicVolume()
     {
         musicAudioSource.volume = soundSliders[2].slider.value * soundSliders[2].maxVolume;
@@ -60,6 +62,15 @@ public class SettingsUi : MonoBehaviour
     public void ToggleUI(bool bl)
     {
         UI.SetActive(bl);
+        if (bl)
+        {
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = previousTimeScale;
+        }
     }
 
 }
